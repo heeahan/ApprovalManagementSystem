@@ -1,11 +1,9 @@
 package com.manage.appr.domain;
 
-import com.manage.appr.dto.
-
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.BeanUtils;
 
-import java.beans.ConstructorProperties;
 import java.time.LocalDateTime;
 
 @Data

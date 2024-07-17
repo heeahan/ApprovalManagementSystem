@@ -1,12 +1,9 @@
 package com.manage.appr.domain;
 
-import com.manage.appr.dto.
-
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CollectionId;
+import org.springframework.beans.BeanUtils;
 
-import java.beans.ConstructorProperties;
 import java.time.LocalDateTime;
 
 @Data
@@ -47,4 +44,5 @@ public class ApprAtchdFileInf {
 
     @Column(name = "LAST_CHG_DTMT")
     private LocalDateTime lastChgDtmt;
+
 }

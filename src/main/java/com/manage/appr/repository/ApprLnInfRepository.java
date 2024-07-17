@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ApprInfRepository extends JpaRepository<ApprInf, Long>{
+public interface ApprLnInfRepository extends JpaRepository<ApprLnInf, Long> {
 }

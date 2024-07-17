@@ -1,9 +1,10 @@
 package com.manage.appr.domain;
 
-import com.manage.appr.dto.ApprInfDto;
+import com.manage.appr.dto.ApprDto;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
 
@@ -53,11 +54,26 @@ public class ApprInf {
     @Column(name = "LAST_CHG_DTMT")
     private LocalDateTime lastChgDtmt;
 
-    @Override
-    public ApprInfDto toApi(){
+//    public ApprDto toApi(){
+//        ApprDto dto = new ApprDto();
+//        BeanUtils.copyProperties(this,dto);
+//        return dto;
+//    }
 
-    }
-
-
-
+    /* maybe stupid
+    public ApprInfDto toApi() {
+    return new ApprInfDto(
+            this.apprId,
+            this.taskDiv,
+            this.apprTyp,
+            this.titl,
+            this.cntntTyp,
+            this.cntnt,
+            this.apprLnChgPsblYN,
+            this.callBack_url,
+            this.frstRegUserId,
+            this.frstRegDtmt,
+            this.lastChgUserId,
+            this.lastChgDtmt);}
+     */
 }
