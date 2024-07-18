@@ -35,16 +35,15 @@ public class ApprController {
             @ApiResponse(responseCode = "400", description = "필요한 정보를 입력하세요."),
             @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
     })
-    public ResponseEntity<ApprInf> createAppr(@RequestBody ApprInf apprInf) {
+    public ResponseEntity<ApprInf> createAppr(@RequestBody ApprDto apprDto) {
         try {
-            ApprInf createdAppr = apprService.createAppr(apprInf);
-            return new ResponseEntity<>(createdAppr, HttpStatus.CREATED);
+//            ApprDto createdAppr = apprService.createAppr(apprDto);
+            ApprInf _apprInf = apprService.createAppr(apprDto);
+            return new ResponseEntity<>(_apprInf, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//        ApprInf _apprInf = apprService.createNewAppr(new ApprInf());
-//        return new ResponseEntity<>(null, HttpStatus.CREATED);
 
 //        System.out.println(apprDto.toString());
 //        return null;
