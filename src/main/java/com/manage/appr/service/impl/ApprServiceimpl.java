@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
+import javax.swing.plaf.OptionPaneUI;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class ApprServiceimpl implements ApprService {
@@ -22,7 +24,8 @@ public class ApprServiceimpl implements ApprService {
 
     @Transactional
     @Override
-    public ApprInf createAppr(ApprDto apprDto) {
+    public ApprDto createAppr(ApprDto apprDto) {
+//    public ApprInf createAppr(ApprDto apprDto) {
         // SET AND GET using dto
         ApprInf apprInf = new ApprInf();
         apprInf.setApprId((apprDto.getApprId()));
@@ -93,6 +96,14 @@ public class ApprServiceimpl implements ApprService {
         }
 
         ApprInf _apprInf = apprInfRepository.save(apprInf);
-        return _apprInf;
+//        return _apprInf;
+        return apprDto;
+    }
+
+    @Transactional
+    @Override
+    public ApprInf getAppr(Long apprId) {
+        Optional<ApprInf> apprInfo = apprInfRepository.findById(apprId);
+        return apprInfo.orElse(null);
     }
 }
