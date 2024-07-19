@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 @Service
 public class ApprServiceimpl implements ApprService {
@@ -25,7 +23,7 @@ public class ApprServiceimpl implements ApprService {
     @Transactional
     @Override
     public ApprInf createAppr(ApprDto apprDto) {
-        // MAP DTO TO ENTITY! But not modifying atchdfile yet
+        // SET AND GET using dto
         ApprInf apprInf = new ApprInf();
         apprInf.setApprId((apprDto.getApprId()));
         apprInf.setTaskDiv(apprDto.getTaskDiv());
@@ -40,6 +38,13 @@ public class ApprServiceimpl implements ApprService {
         apprInf.setLastChgUserId(apprDto.getLastChgUserId());
         apprInf.setLastChgDtmt(apprDto.getLastChgDtmt());
 
+        // Save and use as keys
+        Long pk_apprId = apprInfRepository.save(apprInf).getApprId();
+        LocalDateTime frst_reg_time = apprInfRepository.save(apprInf).getFrstRegDtmt();
+        LocalDateTime last_chg_time = apprInfRepository.save(apprInf).getLastChgDtmt();
+        String frst_reg_id = apprInfRepository.save(apprInf).getFrstRegUserId();
+        String last_chg_id = apprInfRepository.save(apprInf).getLastChgUserId();
+
         // Appr Line
         // brute force..
         // Use for loop to receive appr LINE info [Assume there are 6] -> no need to assume, just loop the size
@@ -47,20 +52,17 @@ public class ApprServiceimpl implements ApprService {
 
         // For loop to get Each Appr Line Info DTO from the 'List<ApprLnInfDto> apprLnInfDto'
         for (int i = 0; i < (apprDto.getApprLnInfDto()).size(); i++) {
-//            ApprLnInf apprLnInf = new ApprLnInf();
-
-            /*
-            GET and SET for each one (Shoule be in the loop, so check the code below)
-            apprLnInf.setApprLnId(apprDto.getApprLnInfDto().get(i).getApprLnId());
-            apprLnInf.setApprLnSrno(apprDto.getApprLnInfDto().get(i).getApprLnSrno());
-            apprLnInf.setApprDiv(apprDto.getApprLnInfDto().get(i).getApprDiv());
-             */
-
             // If Sub User List exists (In This Project, ALWAYS EXIST)
             boolean haveSubUser = !apprDto.getApprLnInfDto().get(i).getUserId().isEmpty();
             if (haveSubUser) {
                 for (int sub_user = 0; sub_user < (apprDto.getApprLnInfDto().get(i).getUserId().size()); sub_user++) {
                     ApprLnInf apprLnInf = new ApprLnInf();
+                    apprLnInf.setApprId(pk_apprId);
+                    apprLnInf.setFrstRegDtmt(frst_reg_time);
+                    apprLnInf.setLastChgDtmt(last_chg_time);
+                    apprLnInf.setFrstRegUserId(frst_reg_id);
+                    apprLnInf.setLastChgUserId(last_chg_id);
+                    apprLnInf.setApprProcDTMT(last_chg_time);
                     apprLnInf.setApprLnId(apprDto.getApprLnInfDto().get(i).getApprLnId());
                     apprLnInf.setApprLnSrno(apprDto.getApprLnInfDto().get(i).getApprLnSrno());
                     apprLnInf.setApprDiv(apprDto.getApprLnInfDto().get(i).getApprDiv());
@@ -77,6 +79,11 @@ public class ApprServiceimpl implements ApprService {
         // Also use for loop to receive each one
         for (int file = 0; file < (apprDto.getApprAtchdFileInfDto().size()); file++) {
             ApprAtchdFileInf apprAtchdFileInf = new ApprAtchdFileInf();
+            apprAtchdFileInf.setApprId(pk_apprId);
+            apprAtchdFileInf.setFrstRegDtmt(frst_reg_time);
+            apprAtchdFileInf.setLastChgDtmt(last_chg_time);
+            apprAtchdFileInf.setFrstRegUserId(frst_reg_id);
+            apprAtchdFileInf.setLastChgUserId(last_chg_id);
             apprAtchdFileInf.setApprAtchdFileId(apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileId());
             apprAtchdFileInf.setApprAtchdFileSrno(apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileSrno());
             apprAtchdFileInf.setFileId(apprDto.getApprAtchdFileInfDto().get(file).getFileId());

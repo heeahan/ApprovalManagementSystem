@@ -31,30 +31,31 @@ public class ApprController {
     @PostMapping("/appr/new")
     @Operation(summary = "Create a new Letter Of Approval", description = "새로운 품의서를 생성합니다.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "품의서 기안이 완료되었습니다."),
+            @ApiResponse(responseCode = "201", description = "품의서 기안이 완료되었습니다."),
             @ApiResponse(responseCode = "400", description = "필요한 정보를 입력하세요."),
             @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
     })
     public ResponseEntity<ApprInf> createAppr(@RequestBody ApprDto apprDto) {
         try {
-//            ApprDto createdAppr = apprService.createAppr(apprDto);
+            if (apprDto.getApprId() == null) {
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            }
+            for (int i = 0; i < (apprDto.getApprLnInfDto()).size(); i++) {
+                if (apprDto.getApprLnInfDto().get(i).getApprLnId() == null || apprDto.getApprLnInfDto().get(i).getApprLnSrno() == null) {
+                    return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+                }
+            }
+            for (int file = 0; file < (apprDto.getApprAtchdFileInfDto().size()); file++){
+                if (apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileId() == null ||
+                        apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileSrno() == null ||
+                        apprDto.getApprAtchdFileInfDto().get(file).getFileId() == null){
+                    return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+                }
+            }
             ApprInf _apprInf = apprService.createAppr(apprDto);
             return new ResponseEntity<>(_apprInf, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-//        System.out.println(apprDto.toString());
-//        return null;
-
-//        try {
-//            if (apprDto.getApprId() == null) {
-//                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//            }
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-
 }

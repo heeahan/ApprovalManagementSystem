@@ -31,26 +31,7 @@ public class ApprDto {
     private List<ApprAtchdFileInfDto> apprAtchdFileInfDto;
 
 
-    public ApprDto(ApprInf apprInf){
+    public ApprDto(ApprInf apprInf) {
         BeanUtils.copyProperties(apprInf, this);
     }
-
-
-
-//    @Override
-//    public ApprInf toEntity() {
-//        ApprInf entity = new ApprInf();
-//        BeanUtils.copyProperties(this, entity);
-//        return entity;
-//    }
 }
-
-/*
-{
-    "1":{"승인구분": "A", "사용자ID": "user1"},
-        "2":{"승인구분": "B", "사용자ID": "user2"},
-        "3":{"승인구분": "C", "사용자ID": {"1": "user3", "2": "user4", "3": "user5"}},
-        "4":{"승인구분": "D", "사용자ID": "user6"},
-                }
-
- */
