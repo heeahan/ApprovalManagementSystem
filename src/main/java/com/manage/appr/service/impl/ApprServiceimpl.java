@@ -5,12 +5,15 @@ import com.manage.appr.domain.*;
 import com.manage.appr.repository.*;
 import com.manage.appr.service.ApprService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ApprServiceimpl implements ApprService {
+    private static final Logger log = LoggerFactory.getLogger(ApprServiceimpl.class);
     @Autowired
     private ApprInfRepository apprInfRepository;
     @Autowired
@@ -40,6 +43,9 @@ public class ApprServiceimpl implements ApprService {
         apprInf.setLastChgUserId(apprDto.getLastChgUserId());
         Long pk_apprId = apprInfRepository.save(apprInf).getApprId();
 
+//        String tmp = apprInfRepository.getNextUserId(pk_apprId);
+//        log.info("### 다음사용자에게 노티함. 사용자ID: {}, 품의서ID: {}", tmp, pk_apprId);
+
         /*
         Appr Line
         brute force..
@@ -50,6 +56,7 @@ public class ApprServiceimpl implements ApprService {
         // For loop to get Each Appr Line Info DTO from the 'List<ApprLnInfDto> apprLnInfDto'
         int ln_srno_cnt = 1;
         for (int i = 0; i < (apprDto.getApprLnInfDto()).size(); i++) {
+
             // If Sub User List exists (In This Project, ALWAYS EXIST)
             boolean haveSubUser = !apprDto.getApprLnInfDto().get(i).getUserId().isEmpty();
             if (haveSubUser) {
@@ -65,7 +72,9 @@ public class ApprServiceimpl implements ApprService {
                     apprLnInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
                     apprLnInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
 
-                    apprLnInf.setApprProcDTMT(apprDto.getFrstRegDtmt());
+                    if (i == 0) {
+                        apprLnInf.setApprProcDTMT(apprDto.getFrstRegDtmt());
+                    }
 
                     apprLnInf.setApprLnId(apprDto.getApprLnInfDto().get(i).getApprLnId());
                     apprLnInf.setApprLnSrno((long) ln_srno_cnt);
@@ -101,6 +110,9 @@ public class ApprServiceimpl implements ApprService {
             apprAtchdFileInf.setFilePath(apprDto.getApprAtchdFileInfDto().get(file).getFilePath());
             ApprAtchdFileInf _apprAtchdFileInf = apprAtchdFileInfRepository.save(apprAtchdFileInf);
         }
+
+        String tmp = apprInfRepository.getNextUserId(pk_apprId);
+        log.info("### For the next user. User ID: {}, Approval ID: {}", tmp, pk_apprId);
 
         return null;
     }
