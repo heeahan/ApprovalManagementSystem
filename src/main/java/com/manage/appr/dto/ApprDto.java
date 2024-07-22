@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import com.manage.appr.domain.*;
-import org.springframework.beans.BeanUtils;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,9 +26,4 @@ public class ApprDto {
 
     private List<ApprLnInfDto> apprLnInfDto;
     private List<ApprAtchdFileInfDto> apprAtchdFileInfDto;
-
-
-    public ApprDto(ApprInf apprInf) {
-        BeanUtils.copyProperties(apprInf, this);
-    }
 }

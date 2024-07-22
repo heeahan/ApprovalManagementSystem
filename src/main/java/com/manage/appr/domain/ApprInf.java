@@ -54,11 +54,11 @@ public class ApprInf {
     @Column(name = "LAST_CHG_DTMT")
     private LocalDateTime lastChgDtmt;
 
-//    public ApprDto toApi(){
-//        ApprDto dto = new ApprDto();
-//        BeanUtils.copyProperties(this,dto);
-//        return dto;
-//    }
+    public ApprDto toApi(){
+        ApprDto dto = new ApprDto();
+        BeanUtils.copyProperties(this,dto);
+        return dto;
+    }
 
     /* maybe stupid
     public ApprInfDto toApi() {

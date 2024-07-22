@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.OptionPaneUI;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -24,8 +23,7 @@ public class ApprServiceimpl implements ApprService {
 
     @Transactional
     @Override
-    public ApprDto createAppr(ApprDto apprDto) {
-//    public ApprInf createAppr(ApprDto apprDto) {
+    public ApprInf createAppr(ApprDto apprDto) {
         // SET AND GET using dto
         ApprInf apprInf = new ApprInf();
         apprInf.setApprId((apprDto.getApprId()));
@@ -41,39 +39,52 @@ public class ApprServiceimpl implements ApprService {
         apprInf.setLastChgUserId(apprDto.getLastChgUserId());
         apprInf.setLastChgDtmt(apprDto.getLastChgDtmt());
 
-        // Save and use as keys
+        Long pk_apprId = apprInfRepository.save(apprInf).getApprId();
+        /*
+        **save 쓰면 중복으로 나옴 ㅠㅠ
+        Save and use as keys
         Long pk_apprId = apprInfRepository.save(apprInf).getApprId();
         LocalDateTime frst_reg_time = apprInfRepository.save(apprInf).getFrstRegDtmt();
         LocalDateTime last_chg_time = apprInfRepository.save(apprInf).getLastChgDtmt();
         String frst_reg_id = apprInfRepository.save(apprInf).getFrstRegUserId();
         String last_chg_id = apprInfRepository.save(apprInf).getLastChgUserId();
+         */
 
-        // Appr Line
-        // brute force..
-        // Use for loop to receive appr LINE info [Assume there are 6] -> no need to assume, just loop the size
-        // sub user solution: if list not isempty, loop every one in the list with all set/get -> sub_user
+
+        /*
+        Appr Line
+        brute force..
+        Use for loop to receive appr LINE info[ Assume there are 6] ->no need to assume, just loop the size
+        sub user solution:
+        if list not isempty, loop every one in the list with all set/get -> sub_user
+         */
+
 
         // For loop to get Each Appr Line Info DTO from the 'List<ApprLnInfDto> apprLnInfDto'
+        int ln_srno_cnt = 1;
         for (int i = 0; i < (apprDto.getApprLnInfDto()).size(); i++) {
             // If Sub User List exists (In This Project, ALWAYS EXIST)
             boolean haveSubUser = !apprDto.getApprLnInfDto().get(i).getUserId().isEmpty();
             if (haveSubUser) {
                 for (int sub_user = 0; sub_user < (apprDto.getApprLnInfDto().get(i).getUserId().size()); sub_user++) {
                     ApprLnInf apprLnInf = new ApprLnInf();
+//                    apprLnInf.setApprId(apprDto.getApprId());
                     apprLnInf.setApprId(pk_apprId);
-                    apprLnInf.setFrstRegDtmt(frst_reg_time);
-                    apprLnInf.setLastChgDtmt(last_chg_time);
-                    apprLnInf.setFrstRegUserId(frst_reg_id);
-                    apprLnInf.setLastChgUserId(last_chg_id);
-                    apprLnInf.setApprProcDTMT(last_chg_time);
+
+
+                    // 이 단계에서 first_reg, last_chg 모두 등록한 유저로 지정 (강제로)
+                    apprLnInf.setFrstRegUserId(apprDto.getFrstRegUserId());
+                    apprLnInf.setLastChgUserId(apprDto.getLastChgUserId());
+
                     apprLnInf.setApprLnId(apprDto.getApprLnInfDto().get(i).getApprLnId());
-                    apprLnInf.setApprLnSrno(apprDto.getApprLnInfDto().get(i).getApprLnSrno());
+                    apprLnInf.setApprLnSrno((long) ln_srno_cnt);
                     apprLnInf.setApprDiv(apprDto.getApprLnInfDto().get(i).getApprDiv());
                     apprLnInf.setUserId(apprDto.getApprLnInfDto().get(i).getUserId().get(sub_user));
                     apprLnInf.setApprProc(apprDto.getApprLnInfDto().get(i).getApprProc());
                     apprLnInf.setCmnt(apprDto.getApprLnInfDto().get(i).getCmnt());
                     apprLnInf.setApprLnTmptId(apprDto.getApprLnInfDto().get(i).getApprLnTmptId());
                     ApprLnInf _apprLnInf = apprLnInfRepository.save(apprLnInf);
+                    ln_srno_cnt++;
                 }
             }
         }
@@ -82,28 +93,41 @@ public class ApprServiceimpl implements ApprService {
         // Also use for loop to receive each one
         for (int file = 0; file < (apprDto.getApprAtchdFileInfDto().size()); file++) {
             ApprAtchdFileInf apprAtchdFileInf = new ApprAtchdFileInf();
+//            apprAtchdFileInf.setApprId(apprDto.getApprId());
             apprAtchdFileInf.setApprId(pk_apprId);
-            apprAtchdFileInf.setFrstRegDtmt(frst_reg_time);
-            apprAtchdFileInf.setLastChgDtmt(last_chg_time);
-            apprAtchdFileInf.setFrstRegUserId(frst_reg_id);
-            apprAtchdFileInf.setLastChgUserId(last_chg_id);
+
+            // 이 단계에서 first_reg, last_chg 모두 등록한 유저로 지정 (강제로)
+            apprAtchdFileInf.setFrstRegUserId(apprDto.getFrstRegUserId());
+            apprAtchdFileInf.setLastChgUserId(apprDto.getLastChgUserId());
+
             apprAtchdFileInf.setApprAtchdFileId(apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileId());
-            apprAtchdFileInf.setApprAtchdFileSrno(apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileSrno());
+            apprAtchdFileInf.setApprAtchdFileSrno((long) file + 1);
             apprAtchdFileInf.setFileId(apprDto.getApprAtchdFileInfDto().get(file).getFileId());
             apprAtchdFileInf.setFileNm(apprDto.getApprAtchdFileInfDto().get(file).getFileNm());
             apprAtchdFileInf.setFilePath(apprDto.getApprAtchdFileInfDto().get(file).getFilePath());
             ApprAtchdFileInf _apprAtchdFileInf = apprAtchdFileInfRepository.save(apprAtchdFileInf);
         }
 
-        ApprInf _apprInf = apprInfRepository.save(apprInf);
-//        return _apprInf;
-        return apprDto;
+        return null;
+    }
+
+    /*
+    @Transactional
+    @Override
+    public ApprInf getAppr(Long apprId) {
+        Optional<ApprInf> apprInf = apprInfRepository.findById(apprId);
+        return apprInf.orElse(null);
     }
 
     @Transactional
     @Override
-    public ApprInf getAppr(Long apprId) {
-        Optional<ApprInf> apprInfo = apprInfRepository.findById(apprId);
-        return apprInfo.orElse(null);
+    public ApprInf updateAppr(Long apprId, ApprDto apprDto) {
+        // Only if ApprLnChgPsblYN: Y
+        Optional<ApprInf> apprInfData = apprInfRepository.findById(apprId);
+        if (apprInfData.isPresent()) {
+            ApprInf apprInf = apprInfData.get();
+            apprInf.s
+        }
     }
+     */
 }

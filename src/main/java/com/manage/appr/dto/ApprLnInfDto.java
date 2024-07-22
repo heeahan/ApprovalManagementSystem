@@ -17,12 +17,4 @@ public class ApprLnInfDto {
     private String apprProc;
     private String cmnt;
     private Long apprLnTmptId;
-//
-//    public void setUserIds(List<String> userId){
-//        this.userId = userId;
-//    }
-//
-//    public List<String> getUserIds(){
-//        return userId;
-//    }
 }

@@ -7,7 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface ApprService {
-//    ApprInf createAppr(ApprDto apprDto);
-    ApprDto createAppr(ApprDto apprDto);
-    ApprInf getAppr(Long apprId);
+    ApprInf createAppr(ApprDto apprDto);
 }
