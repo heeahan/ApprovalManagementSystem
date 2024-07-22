@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-
 @Service
 public class ApprServiceimpl implements ApprService {
     @Autowired
@@ -35,21 +32,13 @@ public class ApprServiceimpl implements ApprService {
         apprInf.setApprLnChgPsblYN(apprDto.getApprLnChgPsblYN());
         apprInf.setCallBack_url(apprDto.getCallBack_url());
         apprInf.setFrstRegUserId(apprDto.getFrstRegUserId());
+
+        // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
         apprInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
+        apprInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
+
         apprInf.setLastChgUserId(apprDto.getLastChgUserId());
-        apprInf.setLastChgDtmt(apprDto.getLastChgDtmt());
-
         Long pk_apprId = apprInfRepository.save(apprInf).getApprId();
-        /*
-        **save 쓰면 중복으로 나옴 ㅠㅠ
-        Save and use as keys
-        Long pk_apprId = apprInfRepository.save(apprInf).getApprId();
-        LocalDateTime frst_reg_time = apprInfRepository.save(apprInf).getFrstRegDtmt();
-        LocalDateTime last_chg_time = apprInfRepository.save(apprInf).getLastChgDtmt();
-        String frst_reg_id = apprInfRepository.save(apprInf).getFrstRegUserId();
-        String last_chg_id = apprInfRepository.save(apprInf).getLastChgUserId();
-         */
-
 
         /*
         Appr Line
@@ -58,8 +47,6 @@ public class ApprServiceimpl implements ApprService {
         sub user solution:
         if list not isempty, loop every one in the list with all set/get -> sub_user
          */
-
-
         // For loop to get Each Appr Line Info DTO from the 'List<ApprLnInfDto> apprLnInfDto'
         int ln_srno_cnt = 1;
         for (int i = 0; i < (apprDto.getApprLnInfDto()).size(); i++) {
@@ -68,13 +55,17 @@ public class ApprServiceimpl implements ApprService {
             if (haveSubUser) {
                 for (int sub_user = 0; sub_user < (apprDto.getApprLnInfDto().get(i).getUserId().size()); sub_user++) {
                     ApprLnInf apprLnInf = new ApprLnInf();
-//                    apprLnInf.setApprId(apprDto.getApprId());
                     apprLnInf.setApprId(pk_apprId);
-
 
                     // 이 단계에서 first_reg, last_chg 모두 등록한 유저로 지정 (강제로)
                     apprLnInf.setFrstRegUserId(apprDto.getFrstRegUserId());
                     apprLnInf.setLastChgUserId(apprDto.getLastChgUserId());
+
+                    // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
+                    apprLnInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
+                    apprLnInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
+
+                    apprLnInf.setApprProcDTMT(apprDto.getFrstRegDtmt());
 
                     apprLnInf.setApprLnId(apprDto.getApprLnInfDto().get(i).getApprLnId());
                     apprLnInf.setApprLnSrno((long) ln_srno_cnt);
@@ -93,12 +84,15 @@ public class ApprServiceimpl implements ApprService {
         // Also use for loop to receive each one
         for (int file = 0; file < (apprDto.getApprAtchdFileInfDto().size()); file++) {
             ApprAtchdFileInf apprAtchdFileInf = new ApprAtchdFileInf();
-//            apprAtchdFileInf.setApprId(apprDto.getApprId());
             apprAtchdFileInf.setApprId(pk_apprId);
 
             // 이 단계에서 first_reg, last_chg 모두 등록한 유저로 지정 (강제로)
             apprAtchdFileInf.setFrstRegUserId(apprDto.getFrstRegUserId());
             apprAtchdFileInf.setLastChgUserId(apprDto.getLastChgUserId());
+
+            // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
+            apprAtchdFileInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
+            apprAtchdFileInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
 
             apprAtchdFileInf.setApprAtchdFileId(apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileId());
             apprAtchdFileInf.setApprAtchdFileSrno((long) file + 1);
