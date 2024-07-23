@@ -2,7 +2,6 @@ package com.manage.appr.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDateTime;
 
