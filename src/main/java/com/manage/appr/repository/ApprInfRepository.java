@@ -2,9 +2,13 @@ package com.manage.appr.repository;
 
 import com.manage.appr.domain.*;
 
+import com.manage.appr.dto.ApprDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface ApprInfRepository extends JpaRepository<ApprInf, Long>{
@@ -18,4 +22,11 @@ public interface ApprInfRepository extends JpaRepository<ApprInf, Long>{
             ") as t LIMIT 1", nativeQuery = true)
     String getNextUserId(Long apprId);
 
+    @Query(value = "SELECT APPR_INF.APPR_ID, APPR_INF.TASK_DIV, APPR_INF.APPR_TYP, APPR_INF.TITL FROM APPR_INF\n" +
+            "JOIN APPR_LN_INF\n" +
+            "ON APPR_INF.APPR_ID = APPR_LN_INF.APPR_ID\n" +
+            "WHERE APPR_LN_INF.APPR_DIV = :apprDiv AND APPR_LN_INF.USER_ID = :userId\n" +
+            "AND APPR_LN_INF.APPR_PROC is null AND APPR_LN_INF.APPR_PROC_DTMT is null\n" +
+            "ORDER BY APPR_INF.APPR_ID, APPR_LN_INF.APPR_LN_SRNO ASC", nativeQuery = true)
+    List<Object[]> getToDo(String userId, String apprDiv);
 }

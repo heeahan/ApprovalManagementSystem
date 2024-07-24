@@ -16,6 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Tag(name = "Approval Management System", description = "Internship Misson 1")
 @RestController
 @RequestMapping("/api")
@@ -61,6 +64,30 @@ public class ApprController {
         }
     }
 
+    @GetMapping("/appr/get")
+    @Operation(summary = "Find to-do list by user ID", description = "확인 대기중인 품의서 리스트를 조회합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "품의서 리스트 조회 성공했습니다."),
+            @ApiResponse(responseCode = "204", description = "확인 대기중인 품의서가 없습니다."),
+            @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
+    })
+    public ResponseEntity<List<Object[]>> getToDo(@RequestParam String userId, @RequestParam String apprDiv) {
+        try {
+            List<Object[]> toDoList = apprService.getToDoList(userId, apprDiv);
+            if (toDoList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(toDoList, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+}
+
+
 //    @GetMapping("appr/{apprID}")
 //    @Operation(summary = "Get the approval by ID", description = "ID로 품의서를 조회합니다.")
 //    @ApiResponses(value = {
@@ -81,4 +108,4 @@ public class ApprController {
 //            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
 //    }
-}
+//}

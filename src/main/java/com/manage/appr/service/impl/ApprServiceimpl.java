@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class ApprServiceimpl implements ApprService {
@@ -128,6 +131,22 @@ public class ApprServiceimpl implements ApprService {
 
         return null;
     }
+
+    @Transactional
+    @Override
+    public List<Object[]> getToDoList(String userId, String apprDiv) {
+//        List<String> toDoStringList = new ArrayList<>();
+        List<Object[]> toDoObjectList = apprInfRepository.getToDo(userId, apprDiv);
+        return toDoObjectList;
+        
+        /* Object를 toString 후 출력
+        for (Object[] objects : toDoObjectList) {
+            toDoStringList.add(Arrays.toString(objects));
+        }
+        return toDoStringList;
+         */
+    }
+
 
     /*
     @Transactional
