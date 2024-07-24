@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class ApprServiceimpl implements ApprService {
     private static final Logger log = LoggerFactory.getLogger(ApprServiceimpl.class);
@@ -37,8 +39,12 @@ public class ApprServiceimpl implements ApprService {
         apprInf.setFrstRegUserId(apprDto.getFrstRegUserId());
 
         // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
-        apprInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
-        apprInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
+        LocalDateTime init_time = LocalDateTime.now();
+        apprInf.setFrstRegDtmt(init_time);
+        apprInf.setLastChgDtmt(init_time);
+
+//        apprInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
+//        apprInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
 
         apprInf.setLastChgUserId(apprDto.getLastChgUserId());
         Long pk_apprId = apprInfRepository.save(apprInf).getApprId();
@@ -69,18 +75,22 @@ public class ApprServiceimpl implements ApprService {
                     apprLnInf.setLastChgUserId(apprDto.getLastChgUserId());
 
                     // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
-                    apprLnInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
-                    apprLnInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
+                    apprLnInf.setFrstRegDtmt(init_time);
+                    apprLnInf.setLastChgDtmt(init_time);
+//                    apprLnInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
+//                    apprLnInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
 
                     if (i == 0) {
-                        apprLnInf.setApprProcDTMT(apprDto.getFrstRegDtmt());
+                        apprLnInf.setApprProcDTMT(init_time);
+//                        apprLnInf.setApprProcDTMT(apprDto.getFrstRegDtmt());
+                        apprLnInf.setApprProc("1");
                     }
 
                     apprLnInf.setApprLnId(apprDto.getApprLnInfDto().get(i).getApprLnId());
                     apprLnInf.setApprLnSrno((long) ln_srno_cnt);
                     apprLnInf.setApprDiv(apprDto.getApprLnInfDto().get(i).getApprDiv());
                     apprLnInf.setUserId(apprDto.getApprLnInfDto().get(i).getUserId().get(sub_user));
-                    apprLnInf.setApprProc(apprDto.getApprLnInfDto().get(i).getApprProc());
+//                    apprLnInf.setApprProc(apprDto.getApprLnInfDto().get(i).getApprProc());
                     apprLnInf.setCmnt(apprDto.getApprLnInfDto().get(i).getCmnt());
                     apprLnInf.setApprLnTmptId(apprDto.getApprLnInfDto().get(i).getApprLnTmptId());
                     ApprLnInf _apprLnInf = apprLnInfRepository.save(apprLnInf);
@@ -100,8 +110,10 @@ public class ApprServiceimpl implements ApprService {
             apprAtchdFileInf.setLastChgUserId(apprDto.getLastChgUserId());
 
             // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
-            apprAtchdFileInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
-            apprAtchdFileInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
+            apprAtchdFileInf.setFrstRegDtmt(init_time);
+            apprAtchdFileInf.setLastChgDtmt(init_time);
+//            apprAtchdFileInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
+//            apprAtchdFileInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
 
             apprAtchdFileInf.setApprAtchdFileId(apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileId());
             apprAtchdFileInf.setApprAtchdFileSrno((long) file + 1);

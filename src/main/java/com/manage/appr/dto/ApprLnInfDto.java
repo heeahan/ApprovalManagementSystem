@@ -14,7 +14,7 @@ public class ApprLnInfDto {
     private Long apprLnSrno;
     private String apprDiv;
     private List<String> userId;
-    private String apprProc;
+//    private String apprProc;
     private String cmnt;
     private Long apprLnTmptId;
 }

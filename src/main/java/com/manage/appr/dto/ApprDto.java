@@ -20,7 +20,8 @@ public class ApprDto {
     private String apprLnChgPsblYN;
     private String callBack_url;
     private String frstRegUserId;
-    private LocalDateTime frstRegDtmt = LocalDateTime.now(); // 현재 로컬 타임
+//    private LocalDateTime frstRegDtmt = LocalDateTime.now(); // 현재 로컬 타임
+//    private LocalDateTime frstRegDtmt;
     private String lastChgUserId;
 //    private LocalDateTime lastChgDtmt;
 
