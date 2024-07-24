@@ -1,0 +1,155 @@
+{
+  "apprId": 0,
+  "taskDiv": "TD001",
+  "apprTyp": "AT001",
+  "titl": "07/17 new test",
+  "cntntTyp": "H",
+  "cntnt": "새로운 테스트 진행해봅니다",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "https://www.google.co.kr/?hl=ko",
+  "frstRegUserId": "SK001",
+  "frstRegDtmt": "2024-07-22T04:32:33.677Z",
+  "lastChgUserId": "SK001",
+  "lastChgDtmt": "2024-07-22T04:32:33.677Z",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 0,
+      "apprDiv": "A",
+      "userId": [
+        "00010"
+      ],
+      "apprProc": "1",
+      "cmnt": "LGTM",
+      "apprLnTmptId": 34345
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 0,
+      "apprDiv": "B",
+      "userId": [
+        "00020"
+      ],
+      "apprProc": "1",
+      "cmnt": "LNGTM",
+      "apprLnTmptId": 34345
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 0,
+      "apprDiv": "C",
+      "userId": [
+        "00031", "00032"
+      ],
+      "apprProc": "1",
+      "cmnt": "WOW",
+      "apprLnTmptId": 34345
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 0,
+      "apprDiv": "D",
+      "userId": [
+        "00040"
+      ],
+      "apprProc": "1",
+      "cmnt": "NO COMMENT",
+      "apprLnTmptId": 34345
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 0,
+      "fileId": 1001,
+      "fileNm": "testfile1",
+      "filePath": "/desktop/0722/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 0,
+      "fileId": 1002,
+      "fileNm": "testfile2",
+      "filePath": "/desktop/myfiles/"
+    }
+  ]
+}
+
+
+
+
+
+{
+  "apprId": 0,
+  "taskDiv": "TD001",
+  "apprTyp": "AT001",
+  "titl": "07/17 new test",
+  "cntntTyp": "H",
+  "cntnt": "새로운 테스트 진행해봅니다",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "https://www.google.co.kr/?hl=ko",
+  "frstRegUserId": "SK001",
+  "lastChgUserId": "SK001",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 0,
+      "apprDiv": "A",
+      "userId": [
+        "00010"
+      ],
+      "apprProc": "1",
+      "cmnt": "LGTM",
+      "apprLnTmptId": 34345
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 0,
+      "apprDiv": "B",
+      "userId": [
+        "00020"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": 34345
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 0,
+      "apprDiv": "C",
+      "userId": [
+        "00031", "00032"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": 34345
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 0,
+      "apprDiv": "D",
+      "userId": [
+        "00040"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": 34345
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 0,
+      "fileId": 1001,
+      "fileNm": "testfile1",
+      "filePath": "/desktop/0722/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 0,
+      "fileId": 1002,
+      "fileNm": "testfile2",
+      "filePath": "/desktop/myfiles/"
+    }
+  ]
+}
