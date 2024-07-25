@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ApprLnInfRepository extends JpaRepository<ApprLnInf, Long> {
     @Query(value = "SELECT * FROM APPR_LN_INF\n" +
@@ -19,7 +21,6 @@ public interface ApprLnInfRepository extends JpaRepository<ApprLnInf, Long> {
             "FROM APPR_LN_INF\n" +
             "WHERE APPR_LN_INF.APPR_ID = :apprId\n" +
             "AND APPR_LN_INF.APPR_PROC is null\n" +
-            "AND APPR_LN_INF.APPR_DIV > :apprDiv\n" +
-            "LIMIT 1", nativeQuery = true)
-    String nextUserNoDuplicate(Long apprId, String apprDiv);
+            "AND APPR_LN_INF.APPR_DIV = CHAR(ASCII(:apprDiv)+1)", nativeQuery = true)
+    List<String> nextUserNoDuplicate(Long apprId, String apprDiv);
 }

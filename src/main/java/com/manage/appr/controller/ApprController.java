@@ -103,11 +103,11 @@ public class ApprController {
             }
 //            String nextUserId = apprInfRepository.getNextUserId(apprId);
             String div = _apprLnInf.getApprDiv();
-            String nextUserId = apprService.getNextUserNotDuplicate(apprId, div);
-            if (nextUserId != null) {
-                log.info("{} Manager, Please check the approval!", nextUserId);
-            }
-            else {
+            List<String> nextUserId = apprService.getNextUserNotDuplicate(apprId, div);
+            if (!nextUserId.isEmpty()) {
+                for (int user = 0; user < nextUserId.size(); user++)
+                    log.info("{} Manager, Please check the approval!", nextUserId.get(user));
+            } else {
                 log.info("END!");
                 return new ResponseEntity<>(null, HttpStatus.OK);
             }

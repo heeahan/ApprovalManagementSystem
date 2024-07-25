@@ -9,5 +9,5 @@ public interface ApprService {
     ApprInf createAppr(ApprDto apprDto);
     List<Object[]> getToDoList(String userId, String apprDiv);
     ApprLnInf getApprDetail(Long apprId, String userId, String cmnt, String apprProc);
-    String getNextUserNotDuplicate(Long apprId, String apprDiv);
+    List<String> getNextUserNotDuplicate(Long apprId, String apprDiv);
 }

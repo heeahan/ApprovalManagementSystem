@@ -161,7 +161,7 @@ public class ApprServiceimpl implements ApprService {
         return apprLnInfRepository.save(apprDetail);
     }
 
-    public String getNextUserNotDuplicate(Long apprId, String apprDiv){
+    public List<String> getNextUserNotDuplicate(Long apprId, String apprDiv){
         return apprLnInfRepository.nextUserNoDuplicate(apprId, apprDiv);
     }
 }
