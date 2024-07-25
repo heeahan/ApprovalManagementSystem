@@ -14,4 +14,12 @@ public interface ApprLnInfRepository extends JpaRepository<ApprLnInf, Long> {
             "AND APPR_LN_INF.APPR_ID = :apprId\n" +
             "AND APPR_LN_INF.APPR_DIV <> \"A\" or \"E\"", nativeQuery = true)
     ApprLnInf apprDetail(Long apprId, String userId);
+
+    @Query(value = "SELECT USER_ID\n" +
+            "FROM APPR_LN_INF\n" +
+            "WHERE APPR_LN_INF.APPR_ID = :apprId\n" +
+            "AND APPR_LN_INF.APPR_PROC is null\n" +
+            "AND APPR_LN_INF.APPR_DIV > :apprDiv\n" +
+            "LIMIT 1", nativeQuery = true)
+    String nextUserNoDuplicate(Long apprId, String apprDiv);
 }

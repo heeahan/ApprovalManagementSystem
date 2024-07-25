@@ -79,7 +79,7 @@ public class ApprServiceimpl implements ApprService {
 
                     // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
                     apprLnInf.setFrstRegDtmt(init_time);
-                    apprLnInf.setLastChgDtmt(init_time);
+//                    apprLnInf.setLastChgDtmt(init_time);
 //                    apprLnInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
 //                    apprLnInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
 
@@ -87,6 +87,7 @@ public class ApprServiceimpl implements ApprService {
                         apprLnInf.setApprProcDTMT(init_time);
 //                        apprLnInf.setApprProcDTMT(apprDto.getFrstRegDtmt());
                         apprLnInf.setApprProc("1");
+                        apprLnInf.setLastChgDtmt(init_time);
                     }
 
                     apprLnInf.setApprLnId(apprDto.getApprLnInfDto().get(i).getApprLnId());
@@ -156,6 +157,11 @@ public class ApprServiceimpl implements ApprService {
         apprDetail.setApprProcDTMT(LocalDateTime.now());
         apprDetail.setLastChgDtmt(LocalDateTime.now());
         apprDetail.setLastChgUserId(userId);
+        apprDetail.setLastChgDtmt(LocalDateTime.now());
         return apprLnInfRepository.save(apprDetail);
+    }
+
+    public String getNextUserNotDuplicate(Long apprId, String apprDiv){
+        return apprLnInfRepository.nextUserNoDuplicate(apprId, apprDiv);
     }
 }

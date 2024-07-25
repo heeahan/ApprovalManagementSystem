@@ -101,9 +101,15 @@ public class ApprController {
                 log.info("{} Manager , Approval '{}' got rejected.", apprAuthor, _apprLnInf.getApprId());
                 return new ResponseEntity<>(null, HttpStatus.OK);
             }
-            String nextUserId = apprInfRepository.getNextUserId(apprId);
+//            String nextUserId = apprInfRepository.getNextUserId(apprId);
+            String div = _apprLnInf.getApprDiv();
+            String nextUserId = apprService.getNextUserNotDuplicate(apprId, div);
             if (nextUserId != null) {
                 log.info("{} Manager, Please check the approval!", nextUserId);
+            }
+            else {
+                log.info("END!");
+                return new ResponseEntity<>(null, HttpStatus.OK);
             }
             log.info("/api/appr/check/apprId={}&apprProc={}", apprId, apprProc);
             return new ResponseEntity<>(_apprLnInf, HttpStatus.OK);
