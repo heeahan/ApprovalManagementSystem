@@ -136,6 +136,7 @@ public class ApprServiceimpl implements ApprService {
     @Override
     public List<Object[]> getToDoList(String userId, String apprDiv) {
 //        List<String> toDoStringList = new ArrayList<>();
+        // 각 todolist를 object로 받음
         List<Object[]> toDoObjectList = apprInfRepository.getToDo(userId, apprDiv);
         return toDoObjectList;
         /* Object를 toString 후 출력
@@ -146,7 +147,15 @@ public class ApprServiceimpl implements ApprService {
          */
     }
 
-//    @Transactional
-//    @Override
-//    public
+    @Transactional
+    @Override
+    public ApprLnInf getApprDetail(Long apprId, String userId, String cmnt, String apprProc) {
+        ApprLnInf apprDetail = apprLnInfRepository.apprDetail(apprId, userId);
+        apprDetail.setCmnt(cmnt);
+        apprDetail.setApprProc(apprProc);
+        apprDetail.setApprProcDTMT(LocalDateTime.now());
+        apprDetail.setLastChgDtmt(LocalDateTime.now());
+        apprDetail.setLastChgUserId(userId);
+        return apprLnInfRepository.save(apprDetail);
+    }
 }

@@ -1,6 +1,7 @@
 package com.manage.appr.controller;
 
 import com.manage.appr.domain.ApprInf;
+import com.manage.appr.domain.ApprLnInf;
 import com.manage.appr.dto.*;
 import com.manage.appr.repository.*;
 import com.manage.appr.service.ApprService;
@@ -16,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name = "Approval Management System", description = "Internship Misson 1")
@@ -84,28 +84,32 @@ public class ApprController {
         }
     }
 
+    @PutMapping("/appr/check")
+    @Operation(summary = "Check the details of the approval", description = "품의서 상세 내역 조회 및 처리합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "품의서 처리 완료되었습니다."),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND."),
+            @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
+    })
+    public ResponseEntity<ApprLnInf> getApprDetail(@RequestParam Long apprId, @RequestParam String userId, @RequestParam String cmnt, @RequestParam String apprProc) {
+        try {
+            ApprLnInf _apprLnInf = apprService.getApprDetail(apprId, userId, cmnt, apprProc);
+            if (_apprLnInf == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else if (apprProc.equals("3")) {
+                String apprAuthor = _apprLnInf.getFrstRegUserId();
+                log.info("{} Manager , Approval '{}' got rejected.", apprAuthor, _apprLnInf.getApprId());
+                return new ResponseEntity<>(null, HttpStatus.OK);
+            }
+            String nextUserId = apprInfRepository.getNextUserId(apprId);
+            if (nextUserId != null) {
+                log.info("{} Manager, Please check the approval!", nextUserId);
+            }
+            log.info("/api/appr/check/apprId={}&apprProc={}", apprId, apprProc);
+            return new ResponseEntity<>(_apprLnInf, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
-
-
-//    @GetMapping("appr/{apprID}")
-//    @Operation(summary = "Get the approval by ID", description = "ID로 품의서를 조회합니다.")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "품의서 조회 성공했습니다."),
-//            @ApiResponse(responseCode = "204", description = "품의서 존재하지 않습니다."),
-//            @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
-//    })
-//    public ResponseEntity<ApprInf> getAppr(@PathVariable("apprID") Long apprID) {
-//        try {
-//            ApprInf apprInf = new ApprInf();
-//            apprInf = apprService.getAppr(apprID);
-//            if (apprInf == null) {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            } else {
-//                return new ResponseEntity<>(apprInf, HttpStatus.OK);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//}

@@ -8,4 +8,5 @@ import java.util.List;
 public interface ApprService {
     ApprInf createAppr(ApprDto apprDto);
     List<Object[]> getToDoList(String userId, String apprDiv);
+    ApprLnInf getApprDetail(Long apprId, String userId, String cmnt, String apprProc);
 }
