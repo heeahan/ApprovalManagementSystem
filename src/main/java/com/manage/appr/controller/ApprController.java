@@ -108,7 +108,7 @@ public class ApprController {
                 for (int user = 0; user < nextUserId.size(); user++)
                     log.info("{} Manager, Please check the approval!", nextUserId.get(user));
             } else {
-                log.info("END!");
+                log.info("품의서 최종 승인 완료되었습니다.");
                 return new ResponseEntity<>(null, HttpStatus.OK);
             }
             log.info("/api/appr/check/apprId={}&apprProc={}", apprId, apprProc);
