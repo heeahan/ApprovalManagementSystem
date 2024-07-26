@@ -1,0 +1,346 @@
+//품의서 #1////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD001",
+  "apprTyp": "AT003",
+  "titl": "홍길동님 주택경비 신규계약 품의",
+  "cntntTyp": "T",
+  "cntnt": "홍길동님 주택경비 신규계약을 아래와 같이 진행하고자 합니다.\n\n- 경비구분: 물리보안\n- 약정기간: 24-09-01 ~ 27-08-31\n- 약정요금: 5,000,000원\n- 특약사항:\n① This is getting heavy\n② Can you hear the bass boom? I'm ready (woo hoo)\n③ Life is sweet as honey\n④ Yeah, this beat cha-ching like money, huh\n⑤ Disco overload, I'm into that, I'm good to go\n⑥ I'm diamond, you know I glow up\n⑦ Hey, so lets go\n\n품의서 검토 및 승인 부탁드립니다.",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/sd/v1/sdsd/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "user1",
+  "lastChgUserId": "user1",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "user1"
+      ],
+      "apprProc": "1",
+      "cmnt": "품의서를 승인해주세요!!",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "user2"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "C",
+      "userId": [
+        "user3", "user4"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 4,
+      "apprDiv": "D",
+      "userId": [
+        "user5"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2384,
+      "fileNm": "계약서.pdf",
+      "filePath": "/common/atchdFile/240724/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 2,
+      "fileId": 2385,
+      "fileNm": "개인정보수집동의서.pdf",
+      "filePath": "/common/atchdFile/240724/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 3,
+      "fileId": 2386,
+      "fileNm": "특약상세내용.pdf",
+      "filePath": "/common/atchdFile/240724/"
+    }
+  ]
+}
+
+//품의서 #2////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD002",
+  "apprTyp": "AT002",
+  "titl": "아무개님 사무실경비 변경계약 품의",
+  "cntntTyp": "T",
+  "cntnt": "아무개님 사무실경비 변경계약을 아래와 같이 진행하고자 합니다.\n\n- 경비구분: 물리보안, 정보보안\n- 약정기간: 24-07-29 ~ 24-12-31\n- 약정요금: 9,452,000원\n- 기타사항:\n① 우리 동네는 밤마다 울려 총성\n② Why you scared? 잘 봐봐 난 이렇게 컸어\n③ 우리 동네는 밤마다 울려 총성\n④ 탕탕 그르르 두두두두 탕탕\n⑤ 우리 동네는 밤마다 울려 총성\n⑥ 총기 손질 깜빡했다 칵칵칵\n⑦ 이 총 하나면 다 나 한테 충성\n⑧ AK47, AK47\n\n고객께서 긴급하게 진행을 원하셔서 빠른 검토 및 승인 부탁드립니다.",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/sd/v1/sdsd/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "user1",
+  "lastChgUserId": "user1",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "user1"
+      ],
+      "apprProc": "1",
+      "cmnt": "변경계약을 위해 긴급하게 승인부탁드립니다...",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "user5"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "D",
+      "userId": [
+        "user6"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2421,
+      "fileNm": "변경계약서.pdf",
+      "filePath": "/common/atchdFile/240725/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 2,
+      "fileId": 2422,
+      "fileNm": "기타상세내용.pdf",
+      "filePath": "/common/atchdFile/240725/"
+    }
+  ]
+}
+
+//품의서 #3////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD001",
+  "apprTyp": "AT002",
+  "titl": "법인카드 비용정산 품의",
+  "cntntTyp": "T",
+  "cntnt": "개인법인카드를 아래와 같이 사용함에 따라 정산을 요합니다.\n\n- 사용일시: 24-08-01 14:03:28\n- 비용: 52,340원\n- 적요:\nyeah king of jd DJ R2 2bz 절대 멈추지 않아 마지막 고지에 깃발을 꽂아 never don't stop 스나이퍼 BK ROOM9 배치기 Outsider K T C OB Let's get it on\n가식과 겉멋뿐인 껍데기 이미 지나버린 시기 패기는\n사라져버린 준비되지 않은 시인 그렇게 기회는\n아무 상관없는 듯 날 맴돌며 날 흔들고 있었지\n무너지는 나를 막기 위해 공사판을 전전하던 그때\n화려한 조명아래 밝게 빛나던 형제를 위해 거칠어진 손으로 힘껏 난 박수를 쳤네\n\n정산을 위해 검토/승인 바랍니다.",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/is/v1/isis/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "user3",
+  "lastChgUserId": "user3",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "user3"
+      ],
+      "apprProc": "1",
+      "cmnt": "부득이하게 법인카드를 사용했습니다. 용서해주세요.",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "user4"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "D",
+      "userId": [
+        "user6"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2478,
+      "fileNm": "결제영수증.png",
+      "filePath": "/common/atchdFile/240726/"
+    }
+  ]
+}
+
+//품의서 #4////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD003",
+  "apprTyp": "AT003",
+  "titl": "휴가신청 품의",
+  "cntntTyp": "T",
+  "cntnt": "아래와 같이 휴가예정입니다.\n\n- 휴가기간: 24-10-09 ~ 24-10-22\n- 사유:\n일할 기분도 아냐\n핑계는 아니고\n거짓말 아니고\n날씨 좀 봐 죽이잖니\n오늘 같은 날엔\n됐고 Give me a break\n어디든 떠나보자\n\n휴가보내주세용..",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/cm/v1/account/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "user1",
+  "lastChgUserId": "user1",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "user1"
+      ],
+      "apprProc": "1",
+      "cmnt": "휴가좀!!!!",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "user2"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "C",
+      "userId": [
+        "user4", "user5"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 4,
+      "apprDiv": "D",
+      "userId": [
+        "user6"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2500,
+      "fileNm": "분단위휴가계획표.xlsx",
+      "filePath": "/common/atchdFile/240730/"
+    }
+  ]
+}
+
+//품의서 #5////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD003",
+  "apprTyp": "AT001",
+  "titl": "세미나개최비 사용 품의",
+  "cntntTyp": "T",
+  "cntnt": "세미나를 개최한 뒤 음주가무를 즐길 예정입니다.\n\n- 참석자: 내 지인들\n- 개최기간: 24-10-09 ~ 24-10-09\n- 예상비용: 1,000,000,000원\n- 세미나 주제:\n① Boom, boom, boom 내 심장이 뛰네\n② Get it like boom, boom, boom\n③ Get it like boom, boom, boom (boom, boom now)\n④ Boom, Boom, boom 내 심장이 뛰네\n⑤ Get it like boom, boom, boom\n⑥ Get it like boom, boom, boom (push it)\n⑦ I wish for what's forbidden\n\n사용승인 요청dream!",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/cs/v1/cscs/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "user1",
+  "lastChgUserId": "user1",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "user1"
+      ],
+      "apprProc": "1",
+      "cmnt": "세미나 개최를 허락해주셔요.",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "user2"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "D",
+      "userId": [
+        "user6"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2987,
+      "fileNm": "세미나장소대여비.pdf",
+      "filePath": "/common/atchdFile/240913/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 2,
+      "fileId": 2988,
+      "fileNm": "교통비결제내역.pdf",
+      "filePath": "/common/atchdFile/240913/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 3,
+      "fileId": 2989,
+      "fileNm": "술과안주결제내역.pdf",
+      "filePath": "/common/atchdFile/240913/"
+    }
+  ]
+}
