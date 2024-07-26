@@ -14,7 +14,7 @@ public class ApprLnInfDto {
     private Long apprLnSrno;
     private String apprDiv;
     private List<String> userId;
-//    private String apprProc;
+//    private String apprProc; -> service에서 작업 후 수정하면 됨. 여기서 초기화할 필요 없음
     private String cmnt;
     private Long apprLnTmptId;
 }

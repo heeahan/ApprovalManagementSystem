@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -46,19 +44,13 @@ public class ApprServiceimpl implements ApprService {
         apprInf.setFrstRegDtmt(init_time);
         apprInf.setLastChgDtmt(init_time);
 
-//        apprInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
-//        apprInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
-
         apprInf.setLastChgUserId(apprDto.getLastChgUserId());
+        // 해당 apprId를 Primary Key로 저장, 나중에 사용
         Long pk_apprId = apprInfRepository.save(apprInf).getApprId();
 
-//        String tmp = apprInfRepository.getNextUserId(pk_apprId);
-//        log.info("### 다음사용자에게 노티함. 사용자ID: {}, 품의서ID: {}", tmp, pk_apprId);
-
         /*
-        Appr Line
-        brute force..
-        Use for loop to receive appr LINE info[ Assume there are 6] ->no need to assume, just loop the size
+        Approval Line (brute force..)
+        Use for loop to receive appr LINE info
         sub user solution:
         if list not isempty, loop every one in the list with all set/get -> sub_user
          */
@@ -73,19 +65,16 @@ public class ApprServiceimpl implements ApprService {
                     ApprLnInf apprLnInf = new ApprLnInf();
                     apprLnInf.setApprId(pk_apprId);
 
-                    // 이 단계에서 first_reg, last_chg 모두 등록한 유저로 지정 (강제로)
+                    // first_reg, last_chg 모두 최초 등록한 유저로 지정 (강제로)
                     apprLnInf.setFrstRegUserId(apprDto.getFrstRegUserId());
                     apprLnInf.setLastChgUserId(apprDto.getLastChgUserId());
 
-                    // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
+                    // 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
                     apprLnInf.setFrstRegDtmt(init_time);
-//                    apprLnInf.setLastChgDtmt(init_time);
-//                    apprLnInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
-//                    apprLnInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
 
+                    // 결재선 중 index #0인 유저(제안자)만 -> 등록시간/처리상태/처리시간 등록
                     if (i == 0) {
                         apprLnInf.setApprProcDTMT(init_time);
-//                        apprLnInf.setApprProcDTMT(apprDto.getFrstRegDtmt());
                         apprLnInf.setApprProc("1");
                         apprLnInf.setLastChgDtmt(init_time);
                     }
@@ -94,11 +83,10 @@ public class ApprServiceimpl implements ApprService {
                     apprLnInf.setApprLnSrno((long) ln_srno_cnt);
                     apprLnInf.setApprDiv(apprDto.getApprLnInfDto().get(i).getApprDiv());
                     apprLnInf.setUserId(apprDto.getApprLnInfDto().get(i).getUserId().get(sub_user));
-//                    apprLnInf.setApprProc(apprDto.getApprLnInfDto().get(i).getApprProc());
                     apprLnInf.setCmnt(apprDto.getApprLnInfDto().get(i).getCmnt());
                     apprLnInf.setApprLnTmptId(apprDto.getApprLnInfDto().get(i).getApprLnTmptId());
                     ApprLnInf _apprLnInf = apprLnInfRepository.save(apprLnInf);
-                    ln_srno_cnt++;
+                    ln_srno_cnt++; // 각 결재선 시리얼번호
                 }
             }
         }
@@ -109,15 +97,13 @@ public class ApprServiceimpl implements ApprService {
             ApprAtchdFileInf apprAtchdFileInf = new ApprAtchdFileInf();
             apprAtchdFileInf.setApprId(pk_apprId);
 
-            // 이 단계에서 first_reg, last_chg 모두 등록한 유저로 지정 (강제로)
+            // first_reg, last_chg 모두 등록한 유저로 지정 (강제로)
             apprAtchdFileInf.setFrstRegUserId(apprDto.getFrstRegUserId());
             apprAtchdFileInf.setLastChgUserId(apprDto.getLastChgUserId());
 
-            // 이 단계에서 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
+            // 최초 등록/마지막 수정 같은 시간으로 지정 (강제로)
             apprAtchdFileInf.setFrstRegDtmt(init_time);
             apprAtchdFileInf.setLastChgDtmt(init_time);
-//            apprAtchdFileInf.setFrstRegDtmt(apprDto.getFrstRegDtmt());
-//            apprAtchdFileInf.setLastChgDtmt(apprDto.getFrstRegDtmt());
 
             apprAtchdFileInf.setApprAtchdFileId(apprDto.getApprAtchdFileInfDto().get(file).getApprAtchdFileId());
             apprAtchdFileInf.setApprAtchdFileSrno((long) file + 1);
@@ -127,6 +113,7 @@ public class ApprServiceimpl implements ApprService {
             ApprAtchdFileInf _apprAtchdFileInf = apprAtchdFileInfRepository.save(apprAtchdFileInf);
         }
 
+        // 다음 유저한테 노티를 log로 출력
         String tmp = apprInfRepository.getNextUserId(pk_apprId);
         log.info("### For the next user. User ID: {}, Approval ID: {}", tmp, pk_apprId);
 
@@ -136,16 +123,9 @@ public class ApprServiceimpl implements ApprService {
     @Transactional
     @Override
     public List<Object[]> getToDoList(String userId, String apprDiv) {
-//        List<String> toDoStringList = new ArrayList<>();
         // 각 todolist를 object로 받음
         List<Object[]> toDoObjectList = apprInfRepository.getToDo(userId, apprDiv);
         return toDoObjectList;
-        /* Object를 toString 후 출력
-        for (Object[] objects : toDoObjectList) {
-            toDoStringList.add(Arrays.toString(objects));
-        }
-        return toDoStringList;
-         */
     }
 
     @Transactional
@@ -161,7 +141,7 @@ public class ApprServiceimpl implements ApprService {
         return apprLnInfRepository.save(apprDetail);
     }
 
-    public List<String> getNextUserNotDuplicate(Long apprId, String apprDiv){
+    public List<String> getNextUserNotDuplicate(Long apprId, String apprDiv) {
         return apprLnInfRepository.nextUserNoDuplicate(apprId, apprDiv);
     }
 }

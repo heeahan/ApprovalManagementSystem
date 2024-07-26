@@ -27,7 +27,6 @@ public interface ApprLnInfRepository extends JpaRepository<ApprLnInf, Long> {
             "AND APPR_LN_INF.APPR_PROC is null\n" +
             "AND APPR_LN_INF.APPR_DIV = CHAR(ASCII(:apprDiv)+1)", nativeQuery = true)
  */
-
     @Query(value = "SELECT USER_ID FROM APPR_LN_INF\n" +
             "WHERE APPR_ID = :apprId\n" +
             "AND APPR_PROC is null\n" +

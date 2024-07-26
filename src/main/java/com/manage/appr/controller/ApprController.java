@@ -101,7 +101,6 @@ public class ApprController {
                 log.info("{} Manager , Approval '{}' got rejected.", apprAuthor, _apprLnInf.getApprId());
                 return new ResponseEntity<>(null, HttpStatus.OK);
             }
-//            String nextUserId = apprInfRepository.getNextUserId(apprId);
             String div = _apprLnInf.getApprDiv();
             List<String> nextUserId = apprService.getNextUserNotDuplicate(apprId, div);
             if (!nextUserId.isEmpty()) {
@@ -117,5 +116,4 @@ public class ApprController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }
