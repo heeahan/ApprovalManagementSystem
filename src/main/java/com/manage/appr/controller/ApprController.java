@@ -116,4 +116,8 @@ public class ApprController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/test")
+    public String hello() {
+        return "테스트입니다.";
+    }
 }
