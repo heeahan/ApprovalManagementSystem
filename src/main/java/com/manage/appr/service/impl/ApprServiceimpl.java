@@ -146,8 +146,8 @@ public class ApprServiceimpl implements ApprService {
     }
 
     @Transactional
-    public ApprLnInf apprInfo(Long apprId, String userId){
-        ApprLnInf apprInfoData = apprLnInfRepository.apprDetail(apprId, userId);
+    public Object[] apprInfo(Long apprId){
+        Object[] apprInfoData = apprInfRepository.getApprInfo(apprId);
         return apprInfoData;
     }
 }

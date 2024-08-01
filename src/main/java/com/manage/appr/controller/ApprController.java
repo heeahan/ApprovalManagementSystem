@@ -124,9 +124,9 @@ public class ApprController {
             @ApiResponse(responseCode = "204", description = "품의서 존재하지 않습니다."),
             @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
     })
-    public ResponseEntity<ApprLnInf> getApprDetail(@RequestParam Long apprId, @RequestParam String userId) {
+    public ResponseEntity<Object[]> getApprDetail(@RequestParam Long apprId) {
         try {
-            ApprLnInf apprDetail = apprService.apprInfo(apprId, userId);
+            Object[] apprDetail = apprService.apprInfo(apprId);
             if (apprDetail == null) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
