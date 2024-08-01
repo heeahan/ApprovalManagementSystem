@@ -144,4 +144,10 @@ public class ApprServiceimpl implements ApprService {
     public List<String> getNextUserNotDuplicate(Long apprId, String apprDiv) {
         return apprLnInfRepository.nextUserNoDuplicate(apprId, apprDiv);
     }
+
+    @Transactional
+    public ApprLnInf apprInfo(Long apprId, String userId){
+        ApprLnInf apprInfoData = apprLnInfRepository.apprDetail(apprId, userId);
+        return apprInfoData;
+    }
 }

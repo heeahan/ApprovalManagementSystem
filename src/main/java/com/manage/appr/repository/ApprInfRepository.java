@@ -25,6 +25,7 @@ public interface ApprInfRepository extends JpaRepository<ApprInf, Long>{
             "ON APPR_INF.APPR_ID = APPR_LN_INF.APPR_ID\n" +
             "WHERE APPR_LN_INF.APPR_DIV = :apprDiv AND APPR_LN_INF.USER_ID = :userId\n" +
             "AND APPR_LN_INF.APPR_PROC is null AND APPR_LN_INF.APPR_PROC_DTMT is null\n" +
+            "AND 0 = (SELECT COUNT(*) FROM APPR_LN_INF WHERE APPR_INF.APPR_ID = APPR_LN_INF.APPR_ID AND APPR_LN_INF.APPR_DIV = 'C' AND APPR_LN_INF.APPR_PROC is not null)\n" +
             "ORDER BY APPR_INF.APPR_ID, APPR_LN_INF.APPR_LN_SRNO ASC", nativeQuery = true)
     List<Object[]> getToDo(String userId, String apprDiv);
 }

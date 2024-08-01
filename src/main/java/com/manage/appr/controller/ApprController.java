@@ -116,4 +116,24 @@ public class ApprController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/appr/getApprInfo")
+    @Operation(summary = "Get the details of an approval", description = "품의서 상세 내용을 조회합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "품의서 상세 내용 조회 완료."),
+            @ApiResponse(responseCode = "204", description = "품의서 존재하지 않습니다."),
+            @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
+    })
+    public ResponseEntity<ApprLnInf> getApprDetail(@RequestParam Long apprId, @RequestParam String userId) {
+        try {
+            ApprLnInf apprDetail = apprService.apprInfo(apprId, userId);
+            if (apprDetail == null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(apprDetail, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
