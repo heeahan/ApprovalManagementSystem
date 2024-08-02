@@ -8,6 +8,7 @@ import com.manage.appr.service.ApprService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -149,5 +150,11 @@ public class ApprServiceimpl implements ApprService {
     public Object[] apprInfo(Long apprId){
         Object[] apprInfoData = apprInfRepository.getApprInfo(apprId);
         return apprInfoData;
+    }
+
+    @Transactional
+    public List<String> getAtchdFiles(Long apprId){
+        List<String> atchdFiles = apprAtchdFileInfRepository.getAtchdFiles(apprId);
+        return atchdFiles;
     }
 }

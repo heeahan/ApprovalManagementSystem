@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import './Detail.css'
 import CmntInputComponent from'./ApprDetail/Comment.js'
+import GetAtchdFiles from './ApprDetail/AtchdFile.js';
 
 function Detail() {
 
@@ -68,6 +69,10 @@ function Detail() {
                             <tr>
                                 <td><strong>최초 등록 시간</strong></td>
                                 <td>{data[3]}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>첨부 파일</strong></td>
+                                <td><GetAtchdFiles apprId={apprId} /></td>
                             </tr>
                         </React.Fragment>
                     ))}

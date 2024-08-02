@@ -136,4 +136,24 @@ public class ApprController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/appr/getAtchdFilesName")
+    @Operation(summary = "Get the name of attached files", description = "첨부 파일 조회합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "첨부 파일 조회 완료."),
+            @ApiResponse(responseCode = "204", description = "첨부파일 존재하지 않습니다."),
+            @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
+    })
+    public ResponseEntity<List<String >> getAtchdFiles(@RequestParam Long apprId) {
+        try {
+            List<String> atchdFiles = apprService.getAtchdFiles(apprId);
+            if (atchdFiles == null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(atchdFiles, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
