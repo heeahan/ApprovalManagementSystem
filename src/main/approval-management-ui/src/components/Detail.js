@@ -73,7 +73,7 @@ function Detail() {
                     ))}
                 </tbody>
             </table>
-            <CmntInputComponent apprId={apprId} userId={userId} />
+            <CmntInputComponent apprId={apprId} userId={userId} apprDiv={apprDiv} />
             <button onClick={() => navigate(-1)}>Back</button>
         </div>
     );
