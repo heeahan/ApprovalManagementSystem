@@ -42,18 +42,18 @@ function TodoList() {
 
     return (
         <div>
-            <h1>Approval Check To-Do List</h1>
-            <h4>처리 대기중인 품의서 리스트 입니다.</h4>
+            <h1 id="appr-todo-headline">Approval Check To-Do List</h1>
+            <h4 id='appr-todo-descrip'>처리 대기중인 품의서 리스트 입니다.</h4>
             {error && <p>{error}</p>}
 
-            <table>
+            <table className="appr-todo-table">
                 <thead>
                     <tr>
                         <th>품의서 ID</th>
                         <th>업무 구분</th>
                         <th>승인 유형</th>
                         <th>품의서 제목</th>
-                        <th></th>
+                        <th>상세 보기</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +64,7 @@ function TodoList() {
                             <td>{todo[2]}</td>
                             <td>{todo[3]}</td>
                             <td>
-                                <button onClick={() => viewDetail(todo[0])}>품의서 조회</button>
+                                <button id="appr-check-button" onClick={() => viewDetail(todo[0])}>품의서 조회</button>
                             </td>
                         </tr>
                     ))}

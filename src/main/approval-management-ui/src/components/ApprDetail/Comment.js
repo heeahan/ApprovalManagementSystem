@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import axios from "axios";
+import './Comment.css'
 
 const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
     // use hook 'useState' to manage cmnt
@@ -67,18 +68,21 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
     };
 
     return (
-        <form onSubmit={handleCmntSubmit}>
+        <form id="cmnt-form" onSubmit={handleCmntSubmit}>
             <label>
-                코멘트
-                <input
+                코멘트: 
+                <textarea
+                    id = "cmnt"
                     type="text"
                     value={cmnt}
                     onChange={handleCmntInput}
                     disabled={isSubmitted}>
-                </input>
+                </textarea>
             </label>
-            <button type="submit" disabled={isSubmitted}>승인</button>
-            <button type="button" onClick={handleReject} disabled={isSubmitted}>반려</button>
+            <div className="button-container">
+            <button id="approve-button" type="submit" disabled={isSubmitted}>승인</button>
+            <button id="reject-button" type="button" onClick={handleReject} disabled={isSubmitted}>반려</button>
+            </div>
         </form>
     );
 };

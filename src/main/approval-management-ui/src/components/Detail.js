@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import './Detail.css'
-import CmntInputComponent from'./ApprDetail/Comment.js'
+import CmntInputComponent from './ApprDetail/Comment.js'
 import GetAtchdFiles from './ApprDetail/AtchdFile.js';
+import GetApprLn from './ApprDetail/ApprLnTable.js';
 
 function Detail() {
 
@@ -43,10 +44,25 @@ function Detail() {
         return <div>품의서 로딩 실패했습니다.</div>;
     }
 
+    const formatDate = (isoDate) => {
+        const date = new Date(isoDate);
+        return date.toLocaleDateString({
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric'
+        }) + '  ' + date.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit'
+        })
+    };
+
     return (
+
         <div className="container">
-            <h1>품의서</h1>
-            <table>
+            <GetApprLn />
+
+            <h1 id='detail-headline'>품의서</h1>
+            <table className='detail-table'>
                 {/* <thead>
                     <tr>
                     </tr>
@@ -63,12 +79,12 @@ function Detail() {
                                 <td>{data[1]}</td>
                             </tr>
                             <tr>
-                                <td><strong>최초 등록자</strong></td>
+                                <td><strong>기안자</strong></td>
                                 <td>{data[2]}</td>
                             </tr>
                             <tr>
-                                <td><strong>최초 등록 시간</strong></td>
-                                <td>{data[3]}</td>
+                                <td><strong>품의 일시</strong></td>
+                                <td>{formatDate(data[3])}</td>
                             </tr>
                             <tr>
                                 <td><strong>첨부 파일</strong></td>
@@ -79,11 +95,11 @@ function Detail() {
                 </tbody>
             </table>
             <CmntInputComponent apprId={apprId} userId={userId} apprDiv={apprDiv} />
-            <button onClick={() => navigate(-1)}>Back</button>
+            <button id="back-button" onClick={() => navigate(-1)}>Back</button>
         </div>
     );
 
-}
+};
 
 
-    export default Detail;
+export default Detail;

@@ -14,10 +14,12 @@ function Login() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form id="login-form" onSubmit={handleSubmit}>
+            <h2>품의서 승인관리</h2>
             <div>
                 <label>User ID:
-                    <input
+                    <input 
+                        id="userid"
                         type="text"
                         value={userId}
                         onChange={(e) => setUserId(e.target.value)}
@@ -29,13 +31,14 @@ function Login() {
             <div>
                 <label>Approval Division:
                     <input
+                        id="appr-div"
                         type="text"
                         value={apprDiv}
                         onChange={(e) => setApprDiv(e.target.value)}
                         required
                     /> </label>
             </div>
-            <button type="submit">Log In</button>
+            <button type="submit" id="login-button">Log In</button>
         </form>
 
     );

@@ -1,0 +1,55 @@
+.appr-ln-container {
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+}
+
+h2 {
+  text-align: center;
+  /* Center the heading */
+  color: black;
+  /* Darker color for contrast */
+  margin-bottom: 20px;
+  /* Space below the heading */
+}
+
+.appr-ln-table {
+  width: 100%;
+  /* Full width for the table */
+  border-collapse: collapse;
+  /* Merge border spacing */
+}
+
+.appr-ln-table th,
+.appr-ln-table td {
+  padding: 12px;
+  /* Padding inside table cells */
+  text-align: center;
+  /* Left align text */
+  border-bottom: 1px solid #ddd;
+  /* Bottom border for cells */
+  margin-bottom: 20px;
+}
+
+.appr-ln-table th {
+  background-color: #dbd7d790;
+  /* Green background for the header */
+  color: black;
+  /* White text color */
+  font-weight: bold;
+  /* Bold text */
+}
+
+.appr-ln-table tr:hover {
+  background-color: #f1f1f1;
+  /* Light gray background on row hover */
+}
+
+.appr-ln-table td {
+  color: black;
+  /* Darker gray text for table cells */
+}

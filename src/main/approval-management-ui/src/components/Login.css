@@ -8,46 +8,79 @@ body {
   margin: 0;
 }
 
-form {
-  background-color: #fff;
+#login-form {
+  background-color: #f9f9f9;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: auto;
+  align-items: center;
 }
 
 label {
   display: block;
-  margin-bottom: 10px;
-  color: #555;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #333;
+  font-size: 17px;
+  text-transform: uppercase;
 }
 
-input[type="text"] {
-  width: 100%;
+#userid {
+  text-align: center;
+  width: 80%;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-top: 8px;
+  margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4c82d3;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
   font-size: 16px;
 }
 
-button:hover {
-  background-color: #1a2052;
+#userid:focus {
+  box-shadow: 0 0 5px #EA002C; /* Subtle shadow on focus */
+}
+
+#appr-div {
+  text-align: center;
+  width: 80%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+#appr-div:focus {
+  box-shadow: 0 0 5px #EA002C; /* Subtle shadow on focus */
+}
+
+/* LOGIN BUTTON */
+#login-button {
+  width: 50%;
+  padding-left: 33px;
+  padding-right: 33px;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  border-radius: 9px;
+  background: #EA002C;
+  border: none;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+  margin: auto;
+  font-weight: bold;
+}
+
+#login-button:hover {
+  box-shadow: 7px 5px 56px -14px #EA002C;
+}
+
+#login-button:active {
+  box-shadow: 7px 5px 56px -10px #F47725;
+  background-color: #F47725;
 }

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Redirect, Navigate } from 'reac
 import Login from './components/Login';
 import Todo from'./components/Todo';
 import Detail from './components/Detail';
+import './App.js'
 
 const App = () => {
     return (
