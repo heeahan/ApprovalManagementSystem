@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import './Comment.css'
@@ -7,10 +7,29 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
     // use hook 'useState' to manage cmnt
     const [cmnt, setCmnt] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isApproveOpen, setIsApproveOpen] = useState(false); // State to manage popup visibility
+    const [isRejectOpen, setIsRejectOpen] = useState(false); // State for reject popup visibility
+
+    useEffect(() => {
+        const submitted = localStorage.getItem('isSubmitted');
+        if (submitted === 'true') {
+            setIsSubmitted(true);
+        }
+    }, []);
+
+    
 
     const handleCmntInput = (event) => {
         setCmnt(event.target.value);
     }
+
+    const togglePopup = () => {
+        setIsApproveOpen(!isApproveOpen); // Toggle the popup visibility
+    };
+
+    const toggleRejPopup = () => {
+        setIsRejectOpen(!isRejectOpen); // Toggle the Rej popup visibility
+    };
 
     const handleCmntSubmit = async (event) => {
         event.preventDefault();
@@ -38,7 +57,9 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
             if (apprProc) {
                 const response = await axios.put(`/api/appr/check?apprId=${apprId}&userId=${userId}&cmnt=${cmnt}&apprProc=${apprProc}`, { data: cmnt });
                 setIsSubmitted(true);
-                console.log('done', response.data);
+                localStorage.setItem('isSubmitted', 'true');
+                // togglePopup();
+                // console.log('done', response.data);
             }
         }
         catch (error) {
@@ -59,10 +80,12 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
             if (apprProc) {
                 const response = await axios.put(`/api/appr/check?apprId=${apprId}&userId=${userId}&cmnt=${cmnt}&apprProc=${apprProc}`, { data: cmnt });
                 setIsSubmitted(true);
-                console.log('done', response.data);
+                setIsRejectOpen(true);
+                localStorage.setItem('isSubmitted', 'true');
+                // console.log('done', response.data);
             }
         }
-        catch (error){
+        catch (error) {
             console.error('error', error)
         }
     };
@@ -70,9 +93,9 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
     return (
         <form id="cmnt-form" onSubmit={handleCmntSubmit}>
             <label>
-                코멘트: 
+                코멘트:
                 <textarea
-                    id = "cmnt"
+                    id="cmnt"
                     type="text"
                     value={cmnt}
                     onChange={handleCmntInput}
@@ -80,8 +103,36 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
                 </textarea>
             </label>
             <div className="button-container">
-            <button id="approve-button" type="submit" disabled={isSubmitted}>승인</button>
-            <button id="reject-button" type="button" onClick={handleReject} disabled={isSubmitted}>반려</button>
+                <button
+                    id="approve-button"
+                    type="submit"
+                    disabled={isSubmitted}
+                    onClick={togglePopup}>
+                    승인
+                </button>
+                {isApproveOpen && (
+                    <div className="appr-popup">
+                        <div className="appr-popup-inner">
+                            <h2>승인 완료</h2>
+                            <p>승인이 성공적으로 완료되었습니다!</p>
+                            <button id="popup-close-button" onClick={togglePopup}>닫기</button>
+                        </div>
+                    </div>
+                )}
+                <button id="reject-button"
+                    type="button" onClick={handleReject}
+                    disabled={isSubmitted}>
+                    반려
+                </button>
+                {isRejectOpen && (
+                    <div className="rej-popup">
+                        <div className="rej-popup-inner">
+                            <h2>반려 완료</h2>
+                            <p>반려가 성공적으로 완료되었습니다!</p>
+                            <button id="popup-close-button" onClick={toggleRejPopup}>닫기</button>
+                        </div>
+                    </div>
+                )}
             </div>
         </form>
     );
