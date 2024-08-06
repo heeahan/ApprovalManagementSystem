@@ -36,4 +36,9 @@ public interface ApprLnInfRepository extends JpaRepository<ApprLnInf, Long> {
             "AND APPR_PROC is null\n" +
             "AND APPR_DIV > :apprDiv)", nativeQuery = true)
     List<String> nextUserNoDuplicate(Long apprId, String apprDiv);
+
+    @Query(value = "SELECT APPR_LN_SRNO, APPR_DIV, USER_ID, APPR_PROC, APPR_PROC_DTMT, CMNT FROM APPR_LN_INF\n" +
+            "WHERE APPR_LN_INF.APPR_ID = :apprId\n" +
+            "ORDER BY APPR_LN_SRNO", nativeQuery = true)
+    List<List<String>> getApprLn(Long apprId);
 }

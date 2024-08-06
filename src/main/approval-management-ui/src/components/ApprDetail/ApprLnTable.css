@@ -1,9 +1,9 @@
 .appr-ln-container {
   width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px;
   background-color: #f9f9f9;
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: visible;
 }
@@ -14,6 +14,7 @@ h2 {
   color: black;
   /* Darker color for contrast */
   margin-bottom: 20px;
+  margin-top: 20px;
   /* Space below the heading */
 }
 
@@ -44,10 +45,9 @@ h2 {
   /* Bold text */
 }
 
-.appr-ln-table tr:hover {
+/* .appr-ln-table tr:hover {
   background-color: #f1f1f1;
-  /* Light gray background on row hover */
-}
+} */
 
 .appr-ln-table td {
   color: black;

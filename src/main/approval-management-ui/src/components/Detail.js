@@ -59,7 +59,7 @@ function Detail() {
     return (
 
         <div className="container">
-            <GetApprLn />
+            <GetApprLn apprId={apprId}/>
 
             <h1 id='detail-headline'>품의서</h1>
             <table className='detail-table'>

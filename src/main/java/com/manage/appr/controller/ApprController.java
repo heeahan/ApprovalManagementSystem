@@ -144,7 +144,7 @@ public class ApprController {
             @ApiResponse(responseCode = "204", description = "첨부파일 존재하지 않습니다."),
             @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
     })
-    public ResponseEntity<List<String >> getAtchdFiles(@RequestParam Long apprId) {
+    public ResponseEntity<List<String>> getAtchdFiles(@RequestParam Long apprId) {
         try {
             List<String> atchdFiles = apprService.getAtchdFiles(apprId);
             if (atchdFiles == null) {
@@ -152,6 +152,25 @@ public class ApprController {
             }
             return new ResponseEntity<>(atchdFiles, HttpStatus.OK);
 
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/appr/getApprLn")
+    @Operation(summary = "Get the line of an approval", description = "한 품의서의 결재선 조회합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "결재선 조회 완료."),
+            @ApiResponse(responseCode = "204", description = "결재선 존재하지 않습니다."),
+            @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
+    })
+    public ResponseEntity<List<List<String>>> getApprLn(@RequestParam Long apprId) {
+        try {
+            List<List<String>> apprLn = apprService.getApprLn(apprId);
+            if (apprLn == null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(apprLn, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

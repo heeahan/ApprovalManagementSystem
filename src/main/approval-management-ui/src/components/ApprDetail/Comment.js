@@ -60,6 +60,8 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
                 const response = await axios.put(`/api/appr/check?apprId=${apprId}&userId=${userId}&cmnt=${cmnt}&apprProc=${apprProc}`, { data: cmnt });
 
                 setIsSubmitted(true);
+                // setIsApproveOpen(true);
+
 
                 // localStorage.setItem('isSubmitted', 'true'); // *to make the input not active anymore* At the begining tried this but it will do the same thing to every user
                 // even not inputed yet

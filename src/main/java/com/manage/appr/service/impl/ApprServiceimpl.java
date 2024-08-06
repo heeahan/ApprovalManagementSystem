@@ -157,4 +157,10 @@ public class ApprServiceimpl implements ApprService {
         List<String> atchdFiles = apprAtchdFileInfRepository.getAtchdFiles(apprId);
         return atchdFiles;
     }
+
+    @Transactional
+    public List<List<String>> getApprLn(Long apprId) {
+        List<List<String>> apprLn = apprLnInfRepository.getApprLn(apprId);
+        return apprLn;
+    }
 }

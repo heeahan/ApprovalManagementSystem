@@ -12,4 +12,5 @@ public interface ApprService {
     List<String> getNextUserNotDuplicate(Long apprId, String apprDiv);
     Object[] apprInfo(Long apprId);
     List<String> getAtchdFiles(Long apprId);
+    List<List<String>> getApprLn(Long apprId);
 }
