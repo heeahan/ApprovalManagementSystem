@@ -37,22 +37,26 @@ function GetApprLn({ apprId }) {
         return <div>품의서 로딩 실패했습니다.</div>;
     }
 
+    // const letterToDivMap = {
+    //     'A': '기안자',
+    //     'B': '검토자',
+    //     'C': '협조자',
+    //     'D': '승인자',
+    //     'E': '참조자',
+    // };
 
-
-    const letterToDivMap = {
-        'A': '기안자',
-        'B': '검토자',
-        'C': '협조자',
-        'D': '승인자',
-        'E': '참조자',
-    };
-
-    const columnNames = [...new Set(lines.map(line => letterToDivMap[line[1]]))];
+    // const columnNames = [...new Set(lines.map(line => letterToDivMap[line[1]]))];
 
     return (
         <div className="appr-ln-container">
             <h2>결재선</h2>
-            <table className="appr-ln-table">
+            <ul>
+                {lines.map((line, index) => (
+                    <li key={index}> {line} </li>
+                ))}
+            </ul>
+
+            {/* <table className="appr-ln-table">
                 <thead>
                     <tr>
                         <th></th>
@@ -73,7 +77,7 @@ function GetApprLn({ apprId }) {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> */}
         </div>
 
     )
