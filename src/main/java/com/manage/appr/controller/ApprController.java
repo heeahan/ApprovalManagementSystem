@@ -69,10 +69,14 @@ public class ApprController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "품의서 리스트 조회 성공했습니다."),
             @ApiResponse(responseCode = "204", description = "확인 대기중인 품의서가 없습니다."),
+            @ApiResponse(responseCode = "403", description = "권한이 없습니다!"),
             @ApiResponse(responseCode = "500", description = "내부 서버 오류 :(")
     })
     public ResponseEntity<List<Object[]>> getToDo(@RequestParam String userId, @RequestParam String apprDiv) {
         try {
+            if (apprDiv.equals("E")) {
+                return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+            }
             List<Object[]> toDoList = apprService.getToDoList(userId, apprDiv);
             if (toDoList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

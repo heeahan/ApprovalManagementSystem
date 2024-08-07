@@ -89,9 +89,9 @@ function GetApprLn({ apprId }) {
                             <td>{line[0]}</td>
                             <td>{letterToDivMap[line[1]]}</td>
                             <td>{line[2]}</td>
-                            <td>{apprProcMap[line[3]] || '승인 처리 대기'}</td>
-                            <td>{formatDate(line[4]) || ''}</td>
-                            <td>{line[5]}</td>
+                            <td>{apprProcMap[line[3]] || '-'}</td>
+                            <td>{formatDate(line[4]) || '-'}</td>
+                            <td>{line[5] || ''}</td>
                         </tr>
                     ))}
                 </tbody>
