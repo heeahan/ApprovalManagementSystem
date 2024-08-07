@@ -1,0 +1,379 @@
+//품의서 #1////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD001",
+  "apprTyp": "AT003",
+  "titl": "사무실 냉난방기 교체 요청",
+  "cntntTyp": "T",
+  "cntnt": "본 품의서는 사무실 내 냉난방기의 교체를 요청하기 위해 작성되었습니다. 현재 사용 중인 냉난방기는 설치된 지 10년 이상이 되어 성능이 저하되고 있으며, 여름철에는 충분한 냉방 효과를 보이지 않고 있습니다.\n이로 인해 직원들의 근무 환경이 불편해지고 있으며, 생산성에도 부정적인 영향을 미치고 있습니다. 최신 모델로 교체할 경우 에너지 효율이 높아져 전기세 절감 효과도 기대할 수 있습니다.\n따라서, 아래와 같은 내용을 토대로 냉난방기 교체를 승인해 주시기를 요청드립니다.\n1. 현재 상태: 노후화로 인한 성능 저하\n2. 대체 모델: 최신 에너지 효율 등급 A++ 이상\n3. 예상 비용: 약 200만원 (설치비 포함)\n예상 교체 시기: 2024년 8월 중순\n부디 긍정적인 검토를 부탁드립니다.\n감사합니다.",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/sd/v1/sdsd/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "김지수",
+  "lastChgUserId": "김지수",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "김지수"
+      ],
+      "apprProc": "1",
+      "cmnt": "품의서를 승인해주세요!!",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "이민호"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "C",
+      "userId": [
+        "박하늘", "최현우"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 4,
+      "apprDiv": "D",
+      "userId": [
+        "장은영"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2384,
+      "fileNm": "계약서.pdf",
+      "filePath": "/common/atchdFile/240724/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 2,
+      "fileId": 2385,
+      "fileNm": "개인정보수집동의서.pdf",
+      "filePath": "/common/atchdFile/240724/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 3,
+      "fileId": 2386,
+      "fileNm": "특약상세내용.pdf",
+      "filePath": "/common/atchdFile/240724/"
+    }
+  ]
+}
+
+//품의서 #2////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD002",
+  "apprTyp": "AT002",
+  "titl": "회의실 개선 요청",
+  "cntntTyp": "T",
+  "cntnt": "본 품의서는 사무실 내 회의실 개선을 요청하기 위해 작성되었습니다. 현재 회의실의 장비와 환경이 오래되어 원활한 회의 진행에 어려움이 있습니다.\n특히, 프로젝터의 화질이 낮고, 화이트보드가 손상되어 효과적인 소통이 힘들어지고 있습니다. 또한, 회의실의 조명이 부족하여 회의 중 시각적으로 불편함을 겪고 있습니다.\n따라서, 아래와 같은 내용을 토대로 회의실 개선을 승인해 주시기를 요청드립니다.\n현재 상태: 장비 노후화 및 환경 불편\n개선 내용: 최신 프로젝터 및 화이트보드 설치, 조명 개선\n예상 비용: 약 150만원 (장비 및 설치비 포함)\n예상 개선 시기: 2024년 9월 중순\n부디 긍정적인 검토를 부탁드립니다.\n감사합니다.",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/sd/v1/sdsd/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "김지수",
+  "lastChgUserId": "김지수",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "김지수"
+      ],
+      "apprProc": "1",
+      "cmnt": "긴급하게 승인부탁드립니다...",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "장은영"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "D",
+      "userId": [
+        "윤상호"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2421,
+      "fileNm": "계약서.pdf",
+      "filePath": "/common/atchdFile/240725/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 2,
+      "fileId": 2422,
+      "fileNm": "기타상세내용.pdf",
+      "filePath": "/common/atchdFile/240725/"
+    }
+  ]
+}
+
+//품의서 #3////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD001",
+  "apprTyp": "AT002",
+  "titl": "직원 복지 향상을 위한 간식 구입 요청",
+  "cntntTyp": "T",
+  "cntnt": "본 품의서는 직원 복지 향상을 위한 간식 구입을 요청하기 위해 작성되었습니다. 현재 사무실에서는 직원들이 편히 쉴 수 있는 공간이 부족하여, 간단한 간식을 제공함으로써 직원들의 만족도를 높이고자 합니다.\n\n간식 제공은 팀워크를 강화하고, 직원들이 업무 중에 잠깐의 휴식을 취할 수 있도록 도와줄 것입니다. 이에 따라, 아래와 같은 내용을 바탕으로 간식 구입을 승인해 주시기를 요청드립니다.\n\n1. 구입 품목: 과자, 음료수, 과일 등\n2. 예상 비용: 약 50만원 (1개월 분)\n3. 구입 목적: 직원 복지 및 사기 진작\n4. 구입 시기: 2024년 8월 중순\n\n부디 긍정적인 검토를 부탁드립니다.\n\n감사합니다.",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/is/v1/isis/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "박하늘",
+  "lastChgUserId": "박하늘",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "박하늘"
+      ],
+      "apprProc": "1",
+      "cmnt": "맛있게 먹겠습니다.",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "최현우"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "D",
+      "userId": [
+        "윤상호"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2478,
+      "fileNm": "2024_간식_구입_견적서.pdf",
+      "filePath": "/common/atchdFile/240726/"
+    }
+  ]
+}
+
+//품의서 #4////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD003",
+  "apprTyp": "AT003",
+  "titl": "팀 빌딩 워크숍 개최 요청",
+  "cntntTyp": "T",
+  "cntnt": "본 품의서는 팀 빌딩 워크숍 개최를 요청하기 위해 작성되었습니다. 최근 프로젝트의 증가로 인해 팀원 간의 소통과 협력의 중요성이 더욱 부각되고 있습니다.\n\n워크숍을 통해 팀원 간의 유대감을 강화하고, 효율적인 협업을 위한 방안을 모색하고자 합니다. 아래와 같은 내용을 바탕으로 워크숍 개최를 승인해 주시기를 요청드립니다.\n\n1. 목적: 팀워크 강화 및 문제 해결 능력 향상\n2. 장소: 인근 교육 센터 또는 외부 행사장\n3. 예상 비용: 약 200만원 (장소 대여 및 프로그램 진행비 포함)\n4. 예상 개최 시기: 2024년 10월 첫째 주\n\n감사합니다.",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/cm/v1/account/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "김지수",
+  "lastChgUserId": "김지수",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "김지수"
+      ],
+      "apprProc": "1",
+      "cmnt": "부디 긍정적인 검토를 부탁드립니다.",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "이민호"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "C",
+      "userId": [
+        "최현우", "장은영"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 4,
+      "apprDiv": "D",
+      "userId": [
+        "윤상호"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2500,
+      "fileNm": "2024_팀_빌딩_워크숍_계획서.docx",
+      "filePath": "/common/atchdFile/240730/"
+    }
+  ]
+}
+
+//품의서 #5////////////////////////////////////////////////////
+{
+  "apprId": 0,
+  "taskDiv": "TD003",
+  "apprTyp": "AT001",
+  "titl": "신규 소프트웨어 라이선스 구매 요청",
+  "cntntTyp": "T",
+  "cntnt": "본 품의서는 팀의 업무 효율성을 높이기 위해 신규 소프트웨어 라이선스 구매를 요청하기 위해 작성되었습니다. 현재 사용 중인 소프트웨어가 기능적으로 부족하여 업무 처리 속도가 느려지고 있으며, 이에 따라 업무에 차질이 생기고 있습니다.\n\n특히, 데이터 분석 및 프로젝트 관리에 필요한 소프트웨어가 없어 팀원들이 추가적인 시간과 노력을 소비하고 있습니다. 따라서 아래와 같은 내용을 바탕으로 소프트웨어 라이선스 구매를 승인해 주시기를 요청드립니다.\n\n1. 소프트웨어 명: 데이터 분석 도구\n2. 구입 라이선스 수: 10개\n3. 예상 비용: 약 300만원 (1년 구독 기준)\n4. 예상 구매 시기: 2024년 9월 중순\n\n감사합니다.",
+  "apprLnChgPsblYN": "N",
+  "callBack_url": "/cs/v1/cscs/apprId={apprId}&apprProc={apprProc}",
+  "frstRegUserId": "김지수",
+  "lastChgUserId": "김지수",
+  "apprLnInfDto": [
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 1,
+      "apprDiv": "A",
+      "userId": [
+        "김지수"
+      ],
+      "apprProc": "1",
+      "cmnt": "허락해주셔요.",
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 2,
+      "apprDiv": "B",
+      "userId": [
+        "이민호"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 3,
+      "apprDiv": "B",
+      "userId": [
+        "박하늘"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 4,
+      "apprDiv": "D",
+      "userId": [
+        "최현우"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 5,
+      "apprDiv": "D",
+      "userId": [
+        "장은영"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    },
+    {
+      "apprLnId": 0,
+      "apprLnSrno": 6,
+      "apprDiv": "D",
+      "userId": [
+        "윤상호"
+      ],
+      "apprProc": null,
+      "cmnt": null,
+      "apprLnTmptId": null
+    }
+  ],
+  "apprAtchdFileInfDto": [
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 1,
+      "fileId": 2987,
+      "fileNm": "2024_소프트웨어_구매_견적서.pdf",
+      "filePath": "/common/atchdFile/240913/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 2,
+      "fileId": 2988,
+      "fileNm": "소프트웨어_사용_보고서.docx",
+      "filePath": "/common/atchdFile/240913/"
+    },
+    {
+      "apprAtchdFileId": 0,
+      "apprAtchdFileSrno": 3,
+      "fileId": 2989,
+      "fileNm": "프로젝트_관리_워크플로우.pptx",
+      "filePath": "/common/atchdFile/240913/"
+    }
+  ]
+}
