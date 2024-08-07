@@ -92,7 +92,7 @@ function GetApprLn({ apprId }) {
                         <tr key={index}>
                             {column.map((item, colIndex) => (
                                 <td key={colIndex}>
-                                    {index === 1 ? letterToDivMap[item] : index === 3 ? apprProcMap[item] || '-' : index === 4 ? formatDate(item) : item || '-'}
+                                    {index === 1 ? letterToDivMap[item] : index === 3 ? apprProcMap[item] || '-' : index === 4 ? formatDate(item) || '-' : item || '-'}
                                 </td>
                             ))}
                         </tr>

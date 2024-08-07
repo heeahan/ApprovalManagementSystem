@@ -4,8 +4,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  height: auto;
 }
 
 #login-form {
@@ -14,8 +13,10 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 400px;
+  width: 100%;
   margin: auto;
   align-items: center;
+  margin-top: 100px;
 }
 
 label {
@@ -72,8 +73,9 @@ label {
   text-align: center;
   cursor: pointer;
   transition: 0.4s;
-  margin: auto;
+  margin: 0 auto;
   font-weight: bold;
+  color: white;
 }
 
 #login-button:hover {

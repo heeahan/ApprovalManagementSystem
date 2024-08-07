@@ -16,7 +16,7 @@ body, html {
 }
 
 .container {
-    width: 800px;
+    width: auto;
     margin: 0 auto;
     background-color: #ffffff;
     border-radius: 8px;
