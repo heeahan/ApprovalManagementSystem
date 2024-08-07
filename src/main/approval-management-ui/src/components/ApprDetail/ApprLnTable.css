@@ -2,7 +2,7 @@
   width: 800px;
   margin: 0 auto;
   padding: 15px;
-  background-color: #f9f9f9;
+  background-color: hsl(0, 0%, 99%);
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: visible;
@@ -37,7 +37,7 @@ h2 {
 }
 
 .appr-ln-table th {
-  background-color: #dbd7d790;
+  background-color: #dbd7d767;
   /* Green background for the header */
   color: black;
   /* White text color */
@@ -48,8 +48,3 @@ h2 {
 /* .appr-ln-table tr:hover {
   background-color: #f1f1f1;
 } */
-
-.appr-ln-table td {
-  color: black;
-  /* Darker gray text for table cells */
-}

@@ -5,6 +5,7 @@ import './ApprLnTable.css'
 
 function GetApprLn({ apprId }) {
     const [lines, setLines] = useState([]);
+    const [line, setLine] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -37,50 +38,97 @@ function GetApprLn({ apprId }) {
         return <div>품의서 로딩 실패했습니다.</div>;
     }
 
-    // const letterToDivMap = {
-    //     'A': '기안자',
-    //     'B': '검토자',
-    //     'C': '협조자',
-    //     'D': '승인자',
-    //     'E': '참조자',
-    // };
+    const letterToDivMap = {
+        'A': '기안자',
+        'B': '검토자',
+        'C': '협조자',
+        'D': '승인자',
+        'E': '참조자',
+    };
+
+    const apprProcMap = {
+        '1' : '기안',
+        '2' : '승인',
+        '3' : '반려',
+        '4' : '협조',
+        '5' : '협조이견',
+    }
+
+    const formatDate = (isoDate) => {
+        if (!isoDate) return '';
+        const date = new Date(isoDate);
+        return date.toLocaleDateString({
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric'
+        }) + '  ' + date.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit'
+        })
+    };
 
     // const columnNames = [...new Set(lines.map(line => letterToDivMap[line[1]]))];
 
     return (
         <div className="appr-ln-container">
-            <h2>결재선</h2>
-            <ul>
-                {lines.map((line, index) => (
-                    <li key={index}> {line} </li>
-                ))}
-            </ul>
-
-            {/* <table className="appr-ln-table">
+            <h2>품의서 결재선</h2>
+            <table className="appr-ln-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        {columnNames.map((name, index) => (
-                            <th key={index}>{name}</th>
-                        ))}
+                        <th>결재선</th>
+                        <th>승인 구분</th>
+                        <th>사용자 ID</th>
+                        <th>승인 처리</th>
+                        <th>승인 처리 일시</th>
+                        <th>코멘트</th>
                     </tr>
                 </thead>
                 <tbody>
                     {lines.map((line, index) => (
                         <tr key={index}>
                             <td>{line[0]}</td>
-                            {columnNames.map((columnName, colIndex) => (
-                                <td key={colIndex}>
-                                    {line[1] === Object.keys(letterToDivMap)[colIndex] ? "✔️" : ""}
-                                </td>
-                            ))}
+                            <td>{letterToDivMap[line[1]]}</td>
+                            <td>{line[2]}</td>
+                            <td>{apprProcMap[line[3]] || '승인 처리 대기'}</td>
+                            <td>{formatDate(line[4]) || ''}</td>
+                            <td>{line[5]}</td>
                         </tr>
                     ))}
                 </tbody>
-            </table> */}
+            </table>
         </div>
 
-    )
+
+
+
+
+        // <div className="appr-ln-container">
+        //     <h2>결재선</h2>
+        //     <table className="appr-ln-table">
+        //         <thead>
+        //             <tr>
+        //                 <th></th>
+        //                 {columnNames.map((name, index) => (
+        //                     <th key={index}>{name}</th>
+        //                 ))}
+        //             </tr>
+        //         </thead>
+        //         <tbody>
+        //             {lines.map((line, index) => (
+        //                 <tr key={index}>
+        //                     <td>{line[0]}</td>
+        //                     {columnNames.map((columnName, colIndex) => (
+        //                         <td key={colIndex}>
+        //                             {line[1] === Object.keys(letterToDivMap)[colIndex] ? "✔️" : ""}
+        //                         </td>
+        //                     ))}
+        //                 </tr>
+        //             ))}
+        //         </tbody>
+        //     </table>
+        // </div>
+
+    );
 
     // return (
     //     <div className="appr-ln-container">
