@@ -1,5 +1,5 @@
 .appr-ln-container {
-  width: 800px;
+  width: fit-content;
   margin: 0 auto;
   padding: 15px;
   background-color: hsl(0, 0%, 99%);
@@ -23,6 +23,7 @@ h2 {
   /* Full width for the table */
   border-collapse: collapse;
   /* Merge border spacing */
+  table-layout: fixed; /* fix width of each column */
 }
 
 .appr-ln-table th,
@@ -35,6 +36,7 @@ h2 {
   /* Bottom border for cells */
   margin-bottom: 20px;
 }
+
 
 .appr-ln-table th {
   background-color: #dbd7d767;

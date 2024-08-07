@@ -47,11 +47,11 @@ function GetApprLn({ apprId }) {
     };
 
     const apprProcMap = {
-        '1' : '기안',
-        '2' : '승인',
-        '3' : '반려',
-        '4' : '협조',
-        '5' : '협조이견',
+        '1': '기안',
+        '2': '승인',
+        '3': '반려',
+        '4': '협조',
+        '5': '협조이견',
     }
 
     const formatDate = (isoDate) => {
@@ -67,8 +67,42 @@ function GetApprLn({ apprId }) {
         })
     };
 
-    // const columnNames = [...new Set(lines.map(line => letterToDivMap[line[1]]))];
+    const transposeData = (lines) => {
+        const numCols = lines[0].length;
+        const transposed = Array.from({ length: numCols }, () => []);
 
+        lines.forEach((line) => {
+            line.forEach((item, index) => {
+                transposed[index].push(item);
+            });
+        });
+
+        return transposed;
+    };
+
+    // Transpose the lines data
+    const transposedLines = transposeData(lines);
+
+    return (
+        <div className="appr-ln-container">
+            <h2>품의서 결재선</h2>
+            <table className="appr-ln-table">
+                <tbody>
+                    {transposedLines.map((column, index) => (
+                        <tr key={index}>
+                            {column.map((item, colIndex) => (
+                                <td key={colIndex}>
+                                    {index === 1 ? letterToDivMap[item] : index === 3 ? apprProcMap[item] || '-' : index === 4 ? formatDate(item) : item || '-'}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+
+    /*
     return (
         <div className="appr-ln-container">
             <h2>품의서 결재선</h2>
@@ -97,62 +131,9 @@ function GetApprLn({ apprId }) {
                 </tbody>
             </table>
         </div>
-
-
-
-
-
-        // <div className="appr-ln-container">
-        //     <h2>결재선</h2>
-        //     <table className="appr-ln-table">
-        //         <thead>
-        //             <tr>
-        //                 <th></th>
-        //                 {columnNames.map((name, index) => (
-        //                     <th key={index}>{name}</th>
-        //                 ))}
-        //             </tr>
-        //         </thead>
-        //         <tbody>
-        //             {lines.map((line, index) => (
-        //                 <tr key={index}>
-        //                     <td>{line[0]}</td>
-        //                     {columnNames.map((columnName, colIndex) => (
-        //                         <td key={colIndex}>
-        //                             {line[1] === Object.keys(letterToDivMap)[colIndex] ? "✔️" : ""}
-        //                         </td>
-        //                     ))}
-        //                 </tr>
-        //             ))}
-        //         </tbody>
-        //     </table>
-        // </div>
-
     );
+*/
 
-    // return (
-    //     <div className="appr-ln-container">
-    //         <h2>품의서 결재선</h2>
-    //         <table className="appr-ln-table">
-    //             <thead>
-    //                 <tr>
-    //                     <th>기안</th>
-    //                     <th>검토</th>
-    //                     <th>협조</th>
-    //                     <th>승인</th>
-    //                 </tr>
-    //             </thead>
-    //             <tbody>
-    //                 <tr>
-    //                     <td>기안자id</td>
-    //                     <td>검토자id</td>
-    //                     <td>협조자들</td>
-    //                     <td>승인자id</td>
-    //                 </tr>
-    //             </tbody>
-    //         </table>
-    //     </div>
-    // )
 };
 
 export default GetApprLn;
