@@ -69,10 +69,10 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
                 // console.log('done', response.data);
             }
         }
-    
+
         catch (error) {
             console.error('error', error)
-        } 
+        }
     };
 
     const handleReject = async (event) => {
@@ -100,54 +100,59 @@ const CmntInputComponent = ({ apprId, userId, apprDiv }) => {
             console.error('error', error)
         }
     };
-    
+
     return (
-        <form id="cmnt-form" onSubmit={handleCmntSubmit}>
-            <label>
-                코멘트:
-                <textarea
-                    id="cmnt"
-                    type="text"
-                    value={cmnt}
-                    onChange={handleCmntInput}
-                    disabled={isSubmitted}>
-                </textarea>
-            </label>
-            <div className="button-container">
-                <button
-                    id="approve-button"
-                    type="submit"
-                    disabled={isSubmitted}
-                    onClick={togglePopup}>
-                    승인
-                </button>
-                {isApproveOpen && (
-                    <div className="appr-popup">
-                        <div className="appr-popup-inner">
-                            <h2>승인 완료</h2>
-                            <p>승인이 성공적으로 완료되었습니다!</p>
-                            {/* <button id="popup-close-button" onClick={togglePopup}>닫기</button> */}
-                            <button id="popup-close-button" onClick={() => navigate(-1)}>닫기</button>
-                        </div>
+        <div>
+            {apprDiv !== 'E' && (
+
+                <form id="cmnt-form" onSubmit={handleCmntSubmit}>
+                    <label>
+                        코멘트:
+                        <textarea
+                            id="cmnt"
+                            type="text"
+                            value={cmnt}
+                            onChange={handleCmntInput}
+                            disabled={isSubmitted}>
+                        </textarea>
+                    </label>
+                    <div className="button-container">
+                        <button
+                            id="approve-button"
+                            type="submit"
+                            disabled={isSubmitted}
+                            onClick={togglePopup}>
+                            승인
+                        </button>
+                        {isApproveOpen && (
+                            <div className="appr-popup">
+                                <div className="appr-popup-inner">
+                                    <h2>승인 완료</h2>
+                                    <p>승인이 성공적으로 완료되었습니다!</p>
+                                    {/* <button id="popup-close-button" onClick={togglePopup}>닫기</button> */}
+                                    <button id="popup-close-button" onClick={() => navigate(-1)}>닫기</button>
+                                </div>
+                            </div>
+                        )}
+                        <button id="reject-button"
+                            type="button" onClick={handleReject}
+                            disabled={isSubmitted}>
+                            반려
+                        </button>
+                        {isRejectOpen && (
+                            <div className="rej-popup">
+                                <div className="rej-popup-inner">
+                                    <h2>반려 완료</h2>
+                                    <p>반려가 성공적으로 완료되었습니다!</p>
+                                    {/* <button id="popup-close-button" onClick={toggleRejPopup}>닫기</button> */}
+                                    <button id="popup-close-button" onClick={() => navigate(-1)}>닫기</button>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                )}
-                <button id="reject-button"
-                    type="button" onClick={handleReject}
-                    disabled={isSubmitted}>
-                    반려
-                </button>
-                {isRejectOpen && (
-                    <div className="rej-popup">
-                        <div className="rej-popup-inner">
-                            <h2>반려 완료</h2>
-                            <p>반려가 성공적으로 완료되었습니다!</p>
-                            {/* <button id="popup-close-button" onClick={toggleRejPopup}>닫기</button> */}
-                            <button id="popup-close-button" onClick={() => navigate(-1)}>닫기</button>
-                        </div>
-                    </div>
-                )}
-            </div>
-        </form>
+                </form>
+            )}
+        </div>
     );
 };
 
