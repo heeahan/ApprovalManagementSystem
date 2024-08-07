@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const GetAtchdFiles = ({ apprId }) => {
-    const [ file, setFile ] = useState([]);
-    const [ fileString, setFileString] = useState('');
+    const [file, setFile] = useState([]);
+    const [fileString, setFileString] = useState('');
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -20,12 +20,12 @@ const GetAtchdFiles = ({ apprId }) => {
     }, [apprId]);
 
     useEffect(() => {
-        if (file.length > 0){
+        if (file.length > 0) {
             setFileString(file.join(', '));
         }
     }, [file]);
 
-    return(
+    return (
         <div>{fileString}</div>
     )
 }

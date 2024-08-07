@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     font-family: Arial, sans-serif;
     /* background-color: #f9f9f9;
     color: #333; */
@@ -7,8 +8,10 @@ body, html {
     margin: 0;
     /* Remove default margin */
     padding: 0;
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center horizontally */
+    display: flex;
+    /* Use flexbox */
+    justify-content: center;
+    /* Center horizontally */
     align-items: flex-start;
     /* Remove default padding */
     /* box-sizing: border-box;
@@ -25,13 +28,15 @@ body, html {
     word-wrap: break-word;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     gap: 30px;
     min-height: 100vh;
     padding: 100px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
 }
-  
+
 
 #detail-headline {
     text-align: center;
@@ -102,6 +107,10 @@ body, html {
     box-shadow: 7px 5px 56px -10px #F47725;
     background-color: #F47725;
 
+}
+
+.loading {
+    opacity: 0;
 }
 
 

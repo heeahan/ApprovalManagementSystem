@@ -18,7 +18,7 @@ function Login() {
             <h2>품의서 승인관리</h2>
             <div>
                 <label>User ID:
-                    <input 
+                    <input
                         id="userid"
                         type="text"
                         value={userId}

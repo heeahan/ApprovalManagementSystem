@@ -58,44 +58,50 @@ function Detail() {
 
     return (
 
-        <div className="container">
-            <GetApprLn apprId={apprId}/>
+        <div className={`container ${loading ? 'loading' : ''}`}>
+            {loading ? (
+                <div>Loading...</div>
+            ) : (
+                <>
+                    <GetApprLn apprId={apprId} />
 
-            <h1 id='detail-headline'>품의서</h1>
-            <table className='detail-table'>
-                {/* <thead>
+                    <h1 id='detail-headline'>품의서</h1>
+                    <table className='detail-table'>
+                        {/* <thead>
                     <tr>
                     </tr>
                 </thead> */}
-                <tbody>
-                    {datas.map((data, index) => (
-                        <React.Fragment key={index}>
-                            <tr>
-                                <td><strong>제목</strong></td>
-                                <td>{data[0]}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>내용</strong></td>
-                                <td>{data[1]}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>기안자</strong></td>
-                                <td>{data[2]}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>품의 일시</strong></td>
-                                <td>{formatDate(data[3])}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>첨부 파일</strong></td>
-                                <td><GetAtchdFiles apprId={apprId} /></td>
-                            </tr>
-                        </React.Fragment>
-                    ))}
-                </tbody>
-            </table>
-            <CmntInputComponent apprId={apprId} userId={userId} apprDiv={apprDiv} />
-            <button id="back-button" onClick={() => navigate(-1)}>Back</button>
+                        <tbody>
+                            {datas.map((data, index) => (
+                                <React.Fragment key={index}>
+                                    <tr>
+                                        <td><strong>제목</strong></td>
+                                        <td>{data[0]}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>내용</strong></td>
+                                        <td>{data[1]}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>기안자</strong></td>
+                                        <td>{data[2]}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>품의 일시</strong></td>
+                                        <td>{formatDate(data[3])}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>첨부 파일</strong></td>
+                                        <td><GetAtchdFiles apprId={apprId} /></td>
+                                    </tr>
+                                </React.Fragment>
+                            ))}
+                        </tbody>
+                    </table>
+                    <CmntInputComponent apprId={apprId} userId={userId} apprDiv={apprDiv} />
+                    <button id="back-button" onClick={() => navigate(-1)}>Back</button>
+                </>
+            )}
         </div>
     );
 

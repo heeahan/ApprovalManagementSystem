@@ -23,7 +23,8 @@ h2 {
   /* Full width for the table */
   border-collapse: collapse;
   /* Merge border spacing */
-  table-layout: fixed; /* fix width of each column */
+  table-layout: fixed;
+  /* fix width of each column */
 }
 
 .appr-ln-table th,
