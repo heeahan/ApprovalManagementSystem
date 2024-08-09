@@ -1,6 +1,6 @@
 # 결재시스템 -> 품의서 #
 
-<img src = "diagram2.0.drawio.png">
+<img src = "Project_Diagram.jpg">
 
 ***⭐readme 아직 정리 안된 상태입니다***
 
