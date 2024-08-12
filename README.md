@@ -1,12 +1,18 @@
-# 결재시스템 -> 품의서 #
+# 결재시스템 -> 품의 요청 #
 
+***⭐readme 정리중***
+
+본 프로젝트에서 품의 요청 관리 시스템의 **일부**를 구현하였습니다.
+
+하기 2 파트로 나눠서 정리해보겠습니다.
+
+1. BACKEND -> API
+2. FRONTEND -> WEBPAGE
+
+***전체 다이어그램:***
 <img src = "Project_Diagram.jpg">
 
-***⭐readme 아직 정리 안된 상태입니다***
-
-미션1에서 품의 요청 API 일부 기능 *[품의서 생성]* 구현을 했습니다.
-
-## 1. Database 부분 ##
+## Database 부분 ##
 
 ### 1.1 DB, 테이블 생성 ###
 테이블 **3개** 생성
@@ -106,7 +112,7 @@ TRUNCATE TABLE APPR_LN_INF;
 TRUNCATE TABLE APPR_ATCHD_FILE_INF;
 ```
 
-## 2. API 부분 ##
+### 2. API 부분 ###
 
 ### 2.0 개발 환경 ###
 
@@ -124,11 +130,35 @@ TRUNCATE TABLE APPR_ATCHD_FILE_INF;
 - 각 테이블 column 기준으로 변수 선언
 - 각 변수 속성 디테일 주의
 
+Domain 부분에서 특별히 어려운 것 없지만, **database와 똑같이 initialize**해야 되는 점 중요합니다.
+
+동시에 각 column에 맞게 어노테이션 적용.
+
+예를 들어,
+
+```
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "appr_inf")
+
+public class ApprInf {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "APPR_ID", nullable = false)
+    private Long apprId;
+...
+...
+```
+에서 `APPR_ID ` column은 ID고, null 불가, 데이터 길이 제한 따로 업습니다.
+
+
 ### 2.2 DTO ###
 
 데이터 전송: DTO는 데이터 전송 시 사용되며, 대부분 Domain 객체를 기준으로 구현됩니다.
 
-❗ **여러 개**의 객체를 받을 경우: 다수의 데이터를 처리할 때는 List를 사용하여 관리합니다.
+❗*주의 1*❗ **여러 개**의 객체를 받을 경우: 다수의 데이터를 처리할 때는 List를 사용하여 관리합니다.
 
 `ApprDto.java` 파일의 일부 참고:
 
@@ -137,29 +167,99 @@ TRUNCATE TABLE APPR_ATCHD_FILE_INF;
     private List<ApprAtchdFileInfDto> apprAtchdFileInfDto;
 ```
 
+
+❗*주의 2*❗ 처음에 dto에서 시간 찍었습니다. (최초 등록 시간 초기화 할 때 `LocalDateTime.now()`사용해서 dto에서 현재 시간 찍음)
+
+하지만 이게 정말 불필요하고 뒤로 갈수록 문제가 될 수 있습니다. 앞으로 결재선 각 승인구분 처리자가 품의서 처리 시, 그 때의 '마지막 수정 시간' 기록해야 되는데, dto에서 초기회된 시간이 존재하는 것 이상합니다.
+
+1. `private LocalDateTime frstRegDtmt;  private LocalDateTime lastChgDtmt;` 시작부타 `LocalDateTime.now()`로 초기화하면, 앞으로 나타나는 모든 시간 다 초기화됨. 분명히 처리하지 않았는데? null로 표시해야 되는데 이상한 시간으로 찍혀있었네? 문제 발생! :(
+2. 앞으로 각 결재선 처리 후, 그때그때 시간 기록하는 것 제일 쉽고 정확한 접근방식입니다.
+
+DTO는 데이터 전송 시 사용 되는 **entity로**, 나중에 많이 사용하게 됩니다.
+
+따라서, entity에서 어떤 항목들 넣어야 되는지 잘 고려해야 합니다.
+
+
 ### 2.3 Service ###
 
 Interface  `ApprService`, implement `ApprServiceimpl` 2개의 파일로 관리
 
-coming soon.. (틀 잡는중) 구현 내용 정리 예정
+Service layer는 아마 시간 투자 제일 많이 필요한 영역입니다.
+
+여기서 각 client<->database 데이터 전송하는 기능 구현합니다.
+
+이 부분에서도 엄청 어려운 것 없습니다. 어려운 것 보다 디테일 부분!
+
+❗*주의 1*❗ 예를 들어, `ApprLnInf _apprLnInf = apprLnInfRepository.save(apprLnInf);`에서 `save`한 번하면 entity로 한 번 저장합니다.
+
+따라서, save는 마지막에서 딱 한 번으로 정리하는 것 좋습니다.
+
+❗*주의 2*❗ 한 entity에서 또 하나의 entity 받을 때, loop 헷갈리지 않게 돌림.
 
 
 ### 2.4 Repository ###
 
-❗ ***nativeQuery의 사용***
+❗ 이 번 프로젝트에서 ***nativeQuery의 사용*** 중요합니다!
 ```
 @Query(value = "순수 쿼리문", nativeQuery = true)
-String getNextUserId(Long apprId); // method
+String methodName(Long ...); // method
 ```
 
--> Serviceimpl에서 사용 가능 -> (본 프로젝트에서)  `String getNextUserId(Long apprId);`를 통해 String인 nextUserId 받고 log로 출력
+MySQL에서 코드 다 쓰고 ide로 복붙하는 것 추천합니다. 변수는 :(메소드에서 실제로 받은 변수)로 바꾸면 끝 🤓
+
+📝여기서 쿼리 쓸 때 대해 중요한 사상(?) 하나 있습니다 => _MAX(), MIN() 활용!_
+
+설명보다 코드로 보시죠:
+
+```
+/*
+    버그 기록: 단순히 +1 쓰면 한 단계가 없어지면 애러뜸
+    예: A>B>C>D 승인 단계로 가면 아무 문제 없고, A>B>D로 가면 애러
+    수정 후: 현 APPR_DIV 보다 큰 DIV 중 MIN subquery 찾으면 됨
+    @Query(value = "SELECT USER_ID\n" +
+            "FROM APPR_LN_INF\n" +
+            "WHERE APPR_LN_INF.APPR_ID = :apprId\n" +
+            "AND APPR_LN_INF.APPR_PROC is null\n" +
+            "AND APPR_LN_INF.APPR_DIV = CHAR(ASCII(:apprDiv)+1)", nativeQuery = true)
+ */
+    @Query(value = "SELECT USER_ID FROM APPR_LN_INF\n" +
+            "WHERE APPR_ID = :apprId\n" +
+            "AND APPR_PROC is null\n" +
+            "AND APPR_DIV = (\n" +
+            "SELECT MIN(APPR_DIV) FROM APPR_LN_INF\n" +
+            "WHERE APPR_ID = :apprId\n" +
+            "AND APPR_PROC is null\n" +
+            "AND APPR_DIV > :apprDiv)", nativeQuery = true)
+    List<String> nextUserNoDuplicate(Long apprId, String apprDiv);
+```
+
 
 ### 2.5 Controller ###
 
-주로 예외처리 빠짐없이 처리
+1. 예외처리 빠짐없이 처리
+2. Format
+   - try {...}
+   - catch exception
+   - return something
 
-## 3. 어려운 점 및 해결 과정 ##
 
-1. SrNo (for loop)
-2. Log
-3. LocalDateTime
+### 3. BACKEND 마지막 정리 ###
+
+이 번 리포트 쓰면서 느낀 점은 전(?) 보다 확실히 이해도가 많이 높아졌습니다.
+
+문구가 많지 않지만, 주의해야 할 점 / 개발 어려운 포인트 위주로 기록하였습니다.
+
+둥시에 1차 프로젝트 비해서 내가 뭘 했는지, 왜 그렇게 했는지, 현재 또 뭘 쓰고 있는지 잘 알고 있습니다.
+
+얍!
+
+
+## UI 부분 ##
+
+### 개발 환경 ###
+
+- 언어: JavaScript, HTML, CSS
+- 프레임워크: React
+- IDE: Visual Studio Code
+- 패키지 매니저: npm 10.8.2
+- OS: Windows
