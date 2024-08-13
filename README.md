@@ -149,7 +149,7 @@ public class ApprInf {
 ...
 ...
 ```
-에서 `APPR_ID ` column은 ID고, null 불가, 데이터 길이 제한 따로 업습니다.
+에서 `APPR_ID ` column은 ID고, null 불가, 데이터 길이 제한 따로 없습니다.
 
 
 ### 2.2 DTO ###
