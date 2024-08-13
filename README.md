@@ -256,10 +256,42 @@ MySQL에서 코드 다 쓰고 ide로 복붙하는 것 추천합니다. 변수는
 
 ## UI 부분 ##
 
-### 개발 환경 ###
+### 1. 개발 환경 ###
 
 - 언어: JavaScript, HTML, CSS
 - 프레임워크: React
 - IDE: Visual Studio Code
 - 패키지 매니저: npm 10.8.2
 - OS: Windows
+
+### 2. 설치 및 세팅 ###
+
+프론트 본격적으로 시작하기 전에 제 예상 어려운 점은 연동 & data fetch 였는데 ***실제로 설치 및 세팅 부분에 이상한 small issues 진짜 많았습니다.***
+
+조금 바보 같이 보일 수 있지만 최대하 상세하게 기록해보겠습니다.
+
+### 2.1 Set Up ###
+
+1. Download node.js from https://nodejs.org/en
+2. Here comes the problem. The terminal kept telling me cannot find `roaming\npm`
+```
+npm error path C:\Users\Administrator\AppData\Roaming\npm
+```
+하지만 해당 경로 가서 보니까 폴더 이미 존재합니다.
+
+***Solution:***
+
+1. cd to the current project > src > main
+2. run this
+```
+npm install -g npm
+```
+3. Create React App
+```
+npx create-react-app ui-name-you-want
+```
+4. Done!
+
+### 2.2 Spring Boot + React.js 개발환경 연동 (본 프로젝트 기준) ###
+
+❗ 주의해야 할 점 먼저 정리하자면, 이런 영역(?) 문법 자주 변경되는 점!
