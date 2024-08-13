@@ -1,7 +1,5 @@
 # 결재시스템 -> 품의 요청 #
 
-***⭐readme 정리중***
-
 본 프로젝트에서 품의 요청 관리 시스템의 **일부**를 구현하였습니다.
 
 하기 2 파트로 나눠서 정리해보겠습니다.
@@ -295,3 +293,170 @@ npx create-react-app ui-name-you-want
 ### 2.2 Spring Boot + React.js 개발환경 연동 (본 프로젝트 기준) ###
 
 ❗ 주의해야 할 점 먼저 정리하자면, 이런 영역(?) 문법 자주 변경되는 점!
+
+***Sol 1***: src>main>front-end-folder>src> create a new file 'setupProxy.js'
+```
+const {createProxyMiddleware} = require('http-proxy-middleware');
+module.exports = function(app){
+  app.use(
+    createProxyMiddleware({
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+      pathFilter: '/api',
+    }),
+  );
+};
+```
+
+처음에 계속 에러 났는데 찾아보니까 http-proxy-middleware > pathFilter 속성값 지정해줘야 합니다.
+
+참고: https://www.npmjs.com/package/http-proxy-middleware
+
+***Sol 2***: Add
+```
+ "proxy": "http://localhost:8080",
+```
+in package.json
+
+이제 http://localhost:3000/ 가도 자연스럽게 백엔드와 연동되어있음 (구현해야..)
+
+### 2.3 구현 > hooks ###
+
+사실 이 부분에 크게 어려운 것 없습니다. (?)과연
+
+하지만 사소한 디테일들 제일 어렵죠.. 프론트 특
+
+그래서 여기서 구현 자체 기록하는 것 보다 ***제 노트***처럼 써볼게요ㅋㅋ
+
+⚠️중국어 주의
+
+🎶***Note Time: useEffect*** 
+
+useEffect 是 React 中的一个 Hook，用于处理副作用（side effects），比如数据获取、订阅、手动操作 DOM 等。它接受两个参数：
+
+第一个参数：一个函数，包含副作用的逻辑。
+
+第二个参数：一个数组（dependencies），用于指定副作用的依赖项。
+
+
+_-依赖数组的作用-_
+
+当依赖数组为空（[]）时，useEffect 中的函数只在组件首次渲染时执行一次。
+
+当依赖数组中包含某些变量时，只有当这些变量发生变化时，useEffect 中的函数才会被调用。
+
+如果不提供依赖数组，useEffect 中的函数将在每次渲染后执行。
+
+
+_-例子-_
+
+以下是几个例子，展示不同依赖数组的用法：
+
+1. 空依赖数组
+```
+import React, { useEffect } from 'react';
+
+function Example() {
+  useEffect(() => {
+    console.log('组件首次渲染时执行');
+  }, []); // 只在组件首次渲染时执行一次
+
+  return <h1>你好，世界！</h1>;
+}
+```
+在这个例子中，useEffect 中的代码只会在组件首次渲染时执行一次。
+
+2. 依赖数组中有变量
+```
+import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(`当前计数: ${count}`);
+  }, [count]); // 只有当 count 变化时才会执行
+
+  return (
+    <div>
+      <p>当前计数: {count}</p>
+      <button onClick={() => setCount(count + 1)}>增加计数</button>
+    </div>
+  );
+}
+```
+在这个例子中，useEffect 的依赖数组中包含了 count 变量。只有当 count 的值发生变化时，useEffect 中的函数才会执行，从而输出当前计数。
+
+3. 没有依赖数组
+```
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    console.log('每次渲染时都会执行这个副作用');
+  }); // 没有依赖数组，每次渲染都会执行
+
+  return (
+    <div>
+      <p>当前值: {value}</p>
+      <button onClick={() => setValue(value + 1)}>增加值</button>
+    </div>
+  );
+}
+```
+
+在这个例子中，由于没有依赖数组，useEffect 中的函数会在每次组件渲染时执行，无论 value 是否变化。
+
+_-总结-_
+
+依赖数组允许你控制副作用的执行时机。
+
+使用依赖数组可以优化性能，避免不必要的副作用调用。
+
+理解何时使用空数组、包含依赖项或不使用数组，将有助于编写高效的 React 组件。
+
+🎶***Note Time: useNavigate***
+
+Maybe one of the easiest hooks
+```
+import { useNavigate } from 'react-router-dom';
+const navigate = useNavigate();
+navigate('/');
+```
+But the point here is: ***DO NOT USE `useHistory`***, the grammer has been changed!!
+
+### 2.4 HTML ###
+
+(우선 html 무시하지 말자 ^^)
+
+대부분 구현 거의 다 완성했을 때 갑자기 이상한 문제가 생겼습니다.
+
+페이지가 중간부터 로딩됩니다.
+
+처음에 margin/padding/height 등에만 집중했는데 다 원인이 아니었어여.. 시간도 많이 낭비했고...
+
+결국 찾은 해결법은 `align-items: flex-start;` 한 줄만 추가하면 끝입니다. 👼
+```
+body, html {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 여기요!!!!!!!!!!!!!!!!!! */
+}
+```
+### 3. FRONTEND 마지막 정리 ###
+
+1. 각 component 관리가 중요합니다.
+2. component 간 변수 전달 / hook의 사용 / axios의 사용 (아래 import)
+
+```
+import React, { Component, useEffect } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import axios from "axios";
+```
