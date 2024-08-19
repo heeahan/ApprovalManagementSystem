@@ -110,7 +110,7 @@ TRUNCATE TABLE APPR_LN_INF;
 TRUNCATE TABLE APPR_ATCHD_FILE_INF;
 ```
 
-### 2. API 부분 ###
+## API 부분 ##
 
 ### 2.0 개발 환경 ###
 
